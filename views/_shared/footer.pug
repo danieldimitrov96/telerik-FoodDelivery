@@ -1,0 +1,16 @@
+mixin footer()
+    footer
+      .container
+        .bottom-footer
+          p
+            span
+              | Copyrigth@ :
+              script.
+                var a = new Date().getFullYear();
+                document.write(a);
+              |  year
+              a(href='#') Your Company Name
+              |                     | Design:
+              a(rel='nofollow', href='http://www.templatemo.com', target='_parent')
+                span.blue template
+                span.green mo

@@ -6,6 +6,7 @@ const path = require('path');
 const init = (app, data) => {
     app.get('/', async (req, res) => {
         res.render('test');
+        // res.send("hi");
     });
 
     /** dynamically load all routes */

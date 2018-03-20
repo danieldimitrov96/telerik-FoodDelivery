@@ -1,0 +1,52 @@
+mixin nav()
+    #heading
+      .container
+        .row
+          .col-md-12
+            .heading-content
+              h2 Our Products
+              span
+                | Home /
+                a(href='index.html') Products
+    .modal.fade.login-register-form(role='dialog')
+      .modal-dialog.modal-sm
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal')
+              span.glyphicon.glyphicon-remove
+            ul.nav.nav-tabs
+              li.active
+                a(data-toggle='tab', href='#login-form')
+                  | Login
+                  span.glyphicon.glyphicon-user
+              li
+                a(data-toggle='tab', href='#registration-form')
+                  | Register
+                  span.glyphicon.glyphicon-pencil
+          .modal-body
+            .tab-content
+              #login-form.tab-pane.fade.in.active
+                form(action='/')
+                  .form-group
+                    label(for='email') Email:
+                    input#email.form-control(type='email', placeholder='Enter email', name='email')
+                  .form-group
+                    label(for='pwd') Password:
+                    input#pwd.form-control(type='password', placeholder='Enter password', name='pwd')
+                  .checkbox
+                    label
+                      input(type='checkbox', name='remember')
+                      |  Remember me
+                  button.btn.btn-default(type='submit') Login
+              #registration-form.tab-pane.fade
+                form(action='/')
+                  .form-group
+                    label(for='name') Your Name:
+                    input#name.form-control(type='text', placeholder='Enter your name', name='name')
+                  .form-group
+                    label(for='newemail') Email:
+                    input#newemail.form-control(type='email', placeholder='Enter new email', name='newemail')
+                  .form-group
+                    label(for='newpwd') Password:
+                    input#newpwd.form-control(type='password', placeholder='New password', name='newpwd')
+                  button.btn.btn-default(type='submit') Register
