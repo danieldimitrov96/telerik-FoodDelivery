@@ -1,0 +1,74 @@
+{
+    "tables": {
+        "Categories": {
+            "tableName": "Categories",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(20)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Food": {
+            "tableName": "Food",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(20)"
+                },
+                "price": {
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "weight": {
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "ingUrl": {
+                    "seqType": "Sequelize.STRING(50)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "CategoryId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Categories",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 1
+}
