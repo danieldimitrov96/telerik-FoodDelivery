@@ -11,7 +11,9 @@ mixin header()
       link(rel='stylesheet', href='./../../static/css/flexslider.css')
       link(rel='stylesheet', href='./../../static/css/testimonails-slider.css')
       link(rel='stylesheet', href='../../static/css/main.css')
-      script(src='//code.jquery.com/jquery-1.11.1.min.js')
+      //- script(src='//code.jquery.com/jquery-1.11.1.min.js')
+      script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+
       link#bootstrap-css(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css', rel='stylesheet')
       script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
       script(src='./../../static/js/vendor/jquery.gmap3.min.js')
@@ -24,7 +26,7 @@ mixin header()
           .row
             .col-md-6
               .home-account
-                a(href='#') Home
+                a(href='/') Home
                 a.btn(href='#', data-toggle='modal', data-target='.login-register-form') My account
             .col-md-6
               .cart-info
@@ -70,9 +72,9 @@ mixin header()
               .main-menu
                 ul
                   li
-                    a(href='index.html') Home
+                    a(href='/') Home
                   li
-                    a(href='contact-us.html') Contact
+                    a(href='/contacts') Contacts
             .col-md-3
               .search-box
                 form.search_form(name='search_form', method='get')

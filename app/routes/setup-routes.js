@@ -4,10 +4,26 @@ const fs = require('fs');
 const path = require('path');
 
 const init = (app, data) => {
-    app.get('/', async (req, res) => {
+     //test route
+     app.get('/test', async (req, res) => {
         res.render('test');
         // res.send("hi");
     });
+
+    app.get('/', async (req, res) => {
+        res.render('home');
+    });
+
+    app.get('/contacts', async (req, res) => {
+        res.render('contacts');
+    });
+
+    app.post('/', async (req, res) => {
+        //login
+        //register
+    });
+
+   
 
     /** dynamically load all routes */
     fs.readdirSync(__dirname)

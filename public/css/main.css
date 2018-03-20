@@ -182,3 +182,7 @@ nav {
   z-index: 2;
   position: absolute;
 }
+
+.maps{
+  padding-top:2em;
+}

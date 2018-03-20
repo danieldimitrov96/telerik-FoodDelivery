@@ -1,24 +1,26 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-  $("#cart").on("click", function() {
-    $(".shopping-cart").fadeToggle( "fast");
+  $("#cart").on("click", function () {
+    $(".shopping-cart").fadeToggle("fast");
   });
 
-	$("a").css({ 'color': 'orange' });
+  $("a").css({
+    'color': 'orange'
+  });
 
   $("div.blog-post").hover(
-    function() {
-        $(this).find("div.content-hide").slideToggle("fast");
+    function () {
+      $(this).find("div.content-hide").slideToggle("fast");
     },
-    function() {
-        $(this).find("div.content-hide").slideToggle("fast");
+    function () {
+      $(this).find("div.content-hide").slideToggle("fast");
     }
   );
 
   $('.flexslider').flexslider({
-		prevText: '',
-		nextText: ''
-	});
+    prevText: '',
+    nextText: ''
+  });
 
   $('.testimonails-slider').flexslider({
     animation: 'slide',
@@ -28,20 +30,29 @@ $(document).ready(function() {
     controlNav: false
   });
 
-  $(function(){
+  $(function () {
 
-  // Instantiate MixItUp:
+    // Instantiate MixItUp:
 
-  $('#Container').mixItUp();
+    $('#Container').mixItUp();
 
-  
 
-  $(document).ready(function() {
+
+    $(document).ready(function () {
       $(".fancybox").fancybox();
     });
 
   });
 
+ 
+
+  $('h3').on('click', () => {
+    $this = $(this);
+    console.log($this.text())
+
+    // addToCart();
+    //use data attr when db is set
+
+  })
 
 });
-

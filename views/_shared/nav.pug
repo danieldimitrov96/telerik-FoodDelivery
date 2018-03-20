@@ -6,8 +6,7 @@ mixin nav()
             .heading-content
               h2 Our Products
               span
-                | Home /
-                a(href='index.html') Products
+                a(href='/') Home
     .modal.fade.login-register-form(role='dialog')
       .modal-dialog.modal-sm
         .modal-content
@@ -44,8 +43,8 @@ mixin nav()
                     label(for='name') Your Name:
                     input#name.form-control(type='text', placeholder='Enter your name', name='name')
                   .form-group
-                    label(for='newemail') Email:
-                    input#newemail.form-control(type='email', placeholder='Enter new email', name='newemail')
+                    label(for='newphone') Phohe number:
+                    input#newemail.form-control(type='phone', placeholder='Enter new phone number', name='newphone')
                   .form-group
                     label(for='newpwd') Password:
                     input#newpwd.form-control(type='password', placeholder='New password', name='newpwd')

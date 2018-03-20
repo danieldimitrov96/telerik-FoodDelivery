@@ -1,0 +1,52 @@
+extends ./_shared/master
+
+
+block content    
+    #product-post
+      .container
+        .row
+          .col-md-12
+            .heading-section
+              h2 Feel free to send a message
+              img(src='./../../static/images/under-heading.png', alt='')
+        #contact-us
+          .container
+            .row
+              .product-item.col-md-12
+                .row
+                  .col-md-8
+                    .message-form
+                      form.send-message(action='#', method='post')
+                        .row
+                          .name.col-md-4
+                            input#nameContact(type='text', name='name', placeholder='Name')
+                          .email.col-md-4
+                            input#emailContact(type='text', name='email', placeholder='Email')
+                          .subject.col-md-4
+                            input#subjectContact(type='text', name='subject', placeholder='Subject')
+                        .row
+                          .text.col-md-12
+                            textarea(name='text', placeholder='Message')
+                        .send
+                          button(type='submit') Send
+                  .col-md-4
+                    .info
+                      p
+                        | Duis at pharetra neque, ut condimentum, purus nisl pretium quam, in pulvinar velit massa id elit.
+                      ul
+                        li
+                          i.fa.fa-phone
+                          | 090-080-0760
+                        li
+                          i.fa.fa-globe
+                          | 456 New Dagon City Studio, Yankinn, Digital Estate
+                        li
+                          i.fa.fa-envelope
+                          a(href='/') info@company.com
+        .row
+          .col-md-12
+            .heading-section
+              h2 Find Us On Map
+              img(src='./../../static/images/under-heading.png', alt='')
+              .maps
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11738.334792443857!2d23.378401031738278!3d42.64898469207623!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9dcf2a89d173b821!2sTelerik+Academy!5e0!3m2!1sbg!2sbg!4v1521547376716" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>  
