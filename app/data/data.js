@@ -5,10 +5,10 @@ const {
     Order,
     OrderDetails,
     User
-} = require('../db/models');
+} = require('../../db/models');
 
 const Data = require('./generic.data');
-const SuperheroesData = require('./superheroes.data');
+// const SuperheroesData = require('./superheroes.data');
 
 module.exports = {
     food: new  Data(Food),

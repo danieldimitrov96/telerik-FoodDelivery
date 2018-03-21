@@ -27,8 +27,15 @@ mixin header()
             .col-md-6
               .home-account
                 a(href='/') Home
-                a.btn(href='#', data-toggle='modal', data-target='.login-register-form')
-                  =username
+                
+                if isUserLogged
+                    a.btn(href='#') 
+                        =username
+                    a.btn(href='/logout') Log out
+                else
+                    a.btn(href='#', data-toggle='modal', data-target='.login-register-form')
+                        =username
+
             .col-md-6
               .cart-info
                 a#cart(href='#')
@@ -79,5 +86,6 @@ mixin header()
             .col-md-3
               .search-box
                 form.search_form(name='search_form', method='get')
-                  input#search(type='text')
+                  input#search(type='text' placeholder="Search is not working...")
                   input#search-button(type='submit')
+                  

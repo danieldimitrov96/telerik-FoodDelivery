@@ -11,20 +11,33 @@ const init = (app, data) => {
     });
 
     app.get('/', async (req, res) => {
-        console.log(req.user);
+        // console.log(req.user);
+
         const model = {
             username: 'My accaunt',
+            isUserLogged: false,
         };
 
         if (req.user) {
             model.username = 'Hello, ' + req.user.username;
+            model.isUserLogged = true;
         }
 
         res.render('home', model);
     });
 
     app.get('/contacts', async (req, res) => {
-        res.render('contacts');
+        const model = {
+            username: 'My accaunt',
+            isUserLogged: false,
+        };
+
+        if (req.user) {
+            model.username = 'Hello, ' + req.user.username;
+            model.isUserLogged = true;
+        }
+
+        res.render('contacts', model);
     });
 
     /** dynamically load all routes */
