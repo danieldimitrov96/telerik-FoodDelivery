@@ -45,7 +45,7 @@
                 "weight": {
                     "seqType": "Sequelize.FLOAT"
                 },
-                "ingUrl": {
+                "imgUrl": {
                     "seqType": "Sequelize.STRING(50)"
                 },
                 "createdAt": {
@@ -68,7 +68,42 @@
                 }
             },
             "indexes": []
+        },
+        "Users": {
+            "tableName": "Users",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(20)"
+                },
+                "phone": {
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(20)"
+                },
+                "adress": {
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(20)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
         }
     },
-    "revision": 1
+    "revision": 2
 }
