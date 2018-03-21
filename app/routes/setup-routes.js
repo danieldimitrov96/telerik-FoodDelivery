@@ -4,26 +4,28 @@ const fs = require('fs');
 const path = require('path');
 
 const init = (app, data) => {
-     //test route
-     app.get('/test', async (req, res) => {
+    // test route
+    app.get('/test', async (req, res) => {
         res.render('test');
         // res.send("hi");
     });
 
     app.get('/', async (req, res) => {
-        res.render('home');
+        console.log(req.user);
+        const model = {
+            username: 'My accaunt',
+        };
+
+        if (req.user) {
+            model.username = 'Hello, ' + req.user.username;
+        }
+
+        res.render('home', model);
     });
 
     app.get('/contacts', async (req, res) => {
         res.render('contacts');
     });
-
-    app.post('/', async (req, res) => {
-        //login
-        //register
-    });
-
-   
 
     /** dynamically load all routes */
     fs.readdirSync(__dirname)
@@ -36,7 +38,7 @@ const init = (app, data) => {
             route.init(app, data);
         });
 
-    
+
 };
 
 module.exports = {

@@ -27,7 +27,8 @@ mixin header()
             .col-md-6
               .home-account
                 a(href='/') Home
-                a.btn(href='#', data-toggle='modal', data-target='.login-register-form') My account
+                a.btn(href='#', data-toggle='modal', data-target='.login-register-form')
+                  =username
             .col-md-6
               .cart-info
                 a#cart(href='#')

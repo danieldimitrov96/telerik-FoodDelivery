@@ -25,23 +25,23 @@ mixin nav()
           .modal-body
             .tab-content
               #login-form.tab-pane.fade.in.active
-                form(action='/')
+                form(action='/login' method='post')
                   .form-group
-                    label(for='email') Email:
-                    input#email.form-control(type='email', placeholder='Enter email', name='email')
+                    label(for='username') Username:
+                    input#email.form-control(type='text', placeholder='Enter username', name='username')
                   .form-group
                     label(for='pwd') Password:
-                    input#pwd.form-control(type='password', placeholder='Enter password', name='pwd')
+                    input#pwd.form-control(type='password', placeholder='Enter password', name='password')
                   .checkbox
                     label
                       input(type='checkbox', name='remember')
                       |  Remember me
-                  button.btn.btn-default(type='submit') Login
+                  button.btn.btn-default(type='submit' value='Log In') Login
               #registration-form.tab-pane.fade
                 form(action='/')
                   .form-group
                     label(for='name') Your Name:
-                    input#name.form-control(type='text', placeholder='Enter your name', name='name')
+                    input#name.form-control(type='text', placeholder='Enter your name', name='username')
                   .form-group
                     label(for='newphone') Phohe number:
                     input#newemail.form-control(type='phone', placeholder='Enter new phone number', name='newphone')
