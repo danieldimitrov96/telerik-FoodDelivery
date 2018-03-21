@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     weight: {
         type: DataTypes.FLOAT,
     }, 
-    ingUrl: {
+    imgUrl: {
         type: DataTypes.STRING(50),
     }
   }, {});

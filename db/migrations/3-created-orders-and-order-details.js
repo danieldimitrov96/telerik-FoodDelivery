@@ -5,22 +5,23 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * createTable "Categories", deps: []
- * createTable "Food", deps: [Categories]
+ * createTable "Orders", deps: [Users]
+ * createTable "OrderDetails", deps: [Orders, Food]
  *
  **/
 
 var info = {
-    "revision": 1,
-    "name": "created-food-nd-category",
-    "created": "2018-03-20T11:25:46.973Z",
+    "revision": 3,
+    "name": "created-orders-and-order-details",
+    "created": "2018-03-21T10:06:11.000Z",
     "comment": ""
 };
 
-var migrationCommands = [{
+var migrationCommands = [
+    {
         fn: "createTable",
         params: [
-            "Categories",
+            "Orders",
             {
                 "id": {
                     "type": Sequelize.INTEGER,
@@ -28,17 +29,22 @@ var migrationCommands = [{
                     "primaryKey": true,
                     "allowNull": false
                 },
-                "name": {
-                    "type": Sequelize.STRING(20),
-                    "allowNull": false,
-                    "unique": true
-                },
                 "createdAt": {
                     "type": Sequelize.DATE,
                     "allowNull": false
                 },
                 "updatedAt": {
                     "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "UserId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
                     "allowNull": false
                 }
             },
@@ -48,7 +54,7 @@ var migrationCommands = [{
     {
         fn: "createTable",
         params: [
-            "Food",
+            "OrderDetails",
             {
                 "id": {
                     "type": Sequelize.INTEGER,
@@ -56,19 +62,9 @@ var migrationCommands = [{
                     "primaryKey": true,
                     "allowNull": false
                 },
-                "name": {
-                    "type": Sequelize.STRING(20),
-                    "allowNull": false,
-                    "unique": true
-                },
-                "price": {
-                    "type": Sequelize.FLOAT
-                },
-                "weight": {
-                    "type": Sequelize.FLOAT
-                },
-                "ingUrl": {
-                    "type": Sequelize.STRING(50)
+                "quantity": {
+                    "type": Sequelize.INTEGER,
+                    "allowNull": false
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
@@ -78,12 +74,22 @@ var migrationCommands = [{
                     "type": Sequelize.DATE,
                     "allowNull": false
                 },
-                "CategoryId": {
+                "OrderId": {
                     "type": Sequelize.INTEGER,
                     "onUpdate": "CASCADE",
                     "onDelete": "CASCADE",
                     "references": {
-                        "model": "Categories",
+                        "model": "Orders",
+                        "key": "id"
+                    },
+                    "allowNull": false
+                },
+                "FoodId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Food",
                         "key": "id"
                     },
                     "allowNull": false
