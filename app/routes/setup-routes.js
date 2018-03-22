@@ -4,12 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 const init = (app, data) => {
+
     // test route
     app.get('/test', async (req, res) => {
         res.render('test');
         // res.send("hi");
     });
-
+    
     app.get('/', async (req, res) => {
         // console.log(req.flash);
 
@@ -24,7 +25,7 @@ const init = (app, data) => {
             model.username = 'Hello, ' + req.user.username;
             model.isUserLogged = req.isAuthenticated();
         }
-        console.log(model);
+        // console.log(model);
         res.render('home', model);
     });
 
@@ -40,7 +41,7 @@ const init = (app, data) => {
             model.username = 'Hello, ' + req.user.username;
             model.isUserLogged = req.isAuthenticated();
         }
-        console.log(model);
+        // console.log(model);
         res.render('contacts', model);
     });
 
