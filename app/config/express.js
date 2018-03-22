@@ -5,6 +5,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const flash = require('connect-flash');
 
 // dependency injection
 // duck typing
@@ -25,6 +26,8 @@ const init = (app) => {
 
     // decorator
     // app.use(morgan('combined'));
+
+    app.use(flash());
 
     app.set('view engine', 'pug');
 

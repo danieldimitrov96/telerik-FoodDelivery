@@ -4,8 +4,8 @@ const init = (app, data) => {
     app.post('/login',
         passport.authenticate('local', {
             successRedirect: '/',
-            // failureRedirect: '/',
-            failureFlash: false,
+            failureRedirect: '/',
+            failureFlash: true,
         }));
 
     app.get('/logout', (req, res) => {
@@ -14,7 +14,7 @@ const init = (app, data) => {
     });
 
     app.post('/register', (req, res) => {
-        data.users.create(req.body);
+        // data.users.create(req.body);
         return res.redirect('/login');
     });
 };

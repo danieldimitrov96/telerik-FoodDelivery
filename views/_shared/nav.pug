@@ -24,6 +24,10 @@ mixin nav()
                   span.glyphicon.glyphicon-pencil
           .modal-body
             .tab-content
+              if messages.length
+                .input-error
+                  =messages[0]
+                  
               #login-form.tab-pane.fade.in.active
                 form(action='/login' method='post')
                   .form-group

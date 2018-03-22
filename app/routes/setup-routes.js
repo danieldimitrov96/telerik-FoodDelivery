@@ -11,18 +11,20 @@ const init = (app, data) => {
     });
 
     app.get('/', async (req, res) => {
-        // console.log(req.user);
+        // console.log(req.flash);
 
         const model = {
             username: 'My accaunt',
             isUserLogged: false,
+            messages: req.flash('error'),
         };
+        // console.log(model.messages);
 
         if (req.user) {
             model.username = 'Hello, ' + req.user.username;
-            model.isUserLogged = true;
+            model.isUserLogged = req.isAuthenticated();
         }
-
+        console.log(model);
         res.render('home', model);
     });
 
@@ -30,13 +32,15 @@ const init = (app, data) => {
         const model = {
             username: 'My accaunt',
             isUserLogged: false,
+            messages: req.flash('error'),
         };
+        // console.log(model.messages);
 
         if (req.user) {
             model.username = 'Hello, ' + req.user.username;
-            model.isUserLogged = true;
+            model.isUserLogged = req.isAuthenticated();
         }
-
+        console.log(model);
         res.render('contacts', model);
     });
 
@@ -50,8 +54,6 @@ const init = (app, data) => {
             const route = require(modulePath);
             route.init(app, data);
         });
-
-
 };
 
 module.exports = {

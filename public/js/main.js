@@ -1,58 +1,60 @@
 $(document).ready(function () {
 
-  $("#cart").on("click", function () {
-    $(".shopping-cart").fadeToggle("fast");
-  });
-
-  $("a").css({
-    'color': 'orange'
-  });
-
-  $("div.blog-post").hover(
-    function () {
-      $(this).find("div.content-hide").slideToggle("fast");
-    },
-    function () {
-      $(this).find("div.content-hide").slideToggle("fast");
-    }
-  );
-
-  $('.flexslider').flexslider({
-    prevText: '',
-    nextText: ''
-  });
-
-  $('.testimonails-slider').flexslider({
-    animation: 'slide',
-    slideshowSpeed: 5000,
-    prevText: '',
-    nextText: '',
-    controlNav: false
-  });
-
-  $(function () {
-
-    // Instantiate MixItUp:
-
-    $('#Container').mixItUp();
-
-
-
-    $(document).ready(function () {
-      $(".fancybox").fancybox();
+    $("#cart").on("click", function () {
+        $(".shopping-cart").fadeToggle("fast");
     });
 
-  });
+    $("a").css({
+        'color': 'orange'
+    });
 
- 
+    $("div.blog-post").hover(
+        function () {
+            $(this).find("div.content-hide").slideToggle("fast");
+        },
+        function () {
+            $(this).find("div.content-hide").slideToggle("fast");
+        }
+    );
 
-  $('h3').on('click', () => {
-    $this = $(this);
-    console.log($this.text())
+    $('.flexslider').flexslider({
+        prevText: '',
+        nextText: ''
+    });
 
-    // addToCart();
-    //use data attr when db is set
+    $('.testimonails-slider').flexslider({
+        animation: 'slide',
+        slideshowSpeed: 5000,
+        prevText: '',
+        nextText: '',
+        controlNav: false
+    });
 
-  })
+    $(function () {
+
+        // Instantiate MixItUp:
+
+        $('#Container').mixItUp();
+
+
+
+        $(document).ready(function () {
+            $(".fancybox").fancybox();
+        });
+
+    });
+    if($('.input-error').html())
+    $('#myAccaunt').click();
+    
+
+
+    $('h3').on('click', () => {
+        $this = $(this);
+        console.log($this.text())
+
+        // addToCart();
+        //use data attr when db is set
+
+    })
 
 });
