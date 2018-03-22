@@ -16,6 +16,10 @@ $(document).ready(function () {
 
     renderFood('nqkva supa', 'soups', '10$', './../../static/images/product1.jpg')
 
+    $(' .shopping-cart-items').css({
+        'padding-left': '0'
+    });
+
     $("#cart").on("click", function () {
         $(".shopping-cart").fadeToggle("fast");
     });
