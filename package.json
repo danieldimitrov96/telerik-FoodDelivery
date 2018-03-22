@@ -38,7 +38,8 @@
     "pug": "^2.0.1",
     "sequelize": "^4.37.2",
     "sequelize-auto-migrations": "^1.0.2",
-    "sequelize-cli": "^4.0.0"
+    "sequelize-cli": "^4.0.0",
+    "sinon": "^4.4.8"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

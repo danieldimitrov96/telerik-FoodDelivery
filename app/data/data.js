@@ -4,7 +4,7 @@ const {
     Category,
     Order,
     OrderDetails,
-    User
+    User,
 } = require('../../db/models');
 
 const Data = require('./generic.data');
@@ -13,7 +13,7 @@ const orderData = require('./order.data');
 // const FoodData = require('./food.data');
 
 module.exports = {
-    food: new  Data(Food),
+    food: new Data(Food),
     category: new Data(Category),
     order: new Data(Order),
     orderDetails: new orderDetailsData(),

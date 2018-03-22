@@ -1,13 +1,13 @@
 const Data = require('./generic.data');
 
 const {
-    Order, 
+    Order,
     OrderDetails,
 } = require('../../db/models');
 
 class orderData extends Data {
     constructor() {
-        super(Order, [OrderDetails])
+        super(Order, [OrderDetails]);
     }
 
     _isObjectValid(obj) {
