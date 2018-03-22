@@ -167,6 +167,15 @@
                     "allowNull": false,
                     "seqType": "Sequelize.STRING(20)"
                 },
+                "email": {
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(20)"
+                },
+                "password": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(20)"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
@@ -179,5 +188,5 @@
             "indexes": []
         }
     },
-    "revision": 3
+    "revision": 4
 }

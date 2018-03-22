@@ -8,12 +8,13 @@ const {
 } = require('../../db/models');
 
 const Data = require('./generic.data');
-// const SuperheroesData = require('./superheroes.data');
+const orderData = require('./order.data');
+const FoodData = require('./food.data');
 
 module.exports = {
     food: new  Data(Food),
     category: new Data(Category),
-    order: new Data(Order),
+    order: new orderData(),
     orderDetails: new Data(OrderDetails),
     user: new Data(User),
 };
