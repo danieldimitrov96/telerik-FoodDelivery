@@ -13,11 +13,11 @@ module.exports = {
         UserId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
+      },
     ], {});
   },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('Orders', null, {});
-  }
+  },
 };

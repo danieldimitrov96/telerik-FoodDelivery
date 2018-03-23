@@ -1,6 +1,6 @@
 'use strict';
 
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
 /**
  * Actions summary:
@@ -10,115 +10,113 @@ var Sequelize = require('sequelize');
  *
  **/
 
-var info = {
-    "revision": 3,
-    "name": "created-orders-and-order-details",
-    "created": "2018-03-21T10:06:11.000Z",
-    "comment": ""
+const info = {
+    'revision': 3,
+    'name': 'created-orders-and-order-details',
+    'created': '2018-03-21T10:06:11.000Z',
+    'comment': '',
 };
 
-var migrationCommands = [
+const migrationCommands = [
     {
-        fn: "createTable",
+        fn: 'createTable',
         params: [
-            "Orders",
+            'Orders',
             {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
+                'id': {
+                    'type': Sequelize.INTEGER,
+                    'autoIncrement': true,
+                    'primaryKey': true,
+                    'allowNull': false,
                 },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
+                'createdAt': {
+                    'type': Sequelize.DATE,
+                    'allowNull': false,
                 },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
+                'updatedAt': {
+                    'type': Sequelize.DATE,
+                    'allowNull': false,
                 },
-                "UserId": {
-                    "type": Sequelize.INTEGER,
-                    "onUpdate": "CASCADE",
-                    "onDelete": "CASCADE",
-                    "references": {
-                        "model": "Users",
-                        "key": "id"
+                'UserId': {
+                    'type': Sequelize.INTEGER,
+                    'onUpdate': 'CASCADE',
+                    'onDelete': 'CASCADE',
+                    'references': {
+                        'model': 'Users',
+                        'key': 'id',
                     },
-                    "allowNull": false
-                }
+                    'allowNull': false,
+                },
             },
-            {}
-        ]
+            {},
+        ],
     },
     {
-        fn: "createTable",
+        fn: 'createTable',
         params: [
-            "OrderDetails",
+            'OrderDetails',
             {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
+                'id': {
+                    'type': Sequelize.INTEGER,
+                    'autoIncrement': true,
+                    'primaryKey': true,
+                    'allowNull': false,
                 },
-                "quantity": {
-                    "type": Sequelize.INTEGER,
-                    "allowNull": false
+                'quantity': {
+                    'type': Sequelize.INTEGER,
+                    'allowNull': false,
                 },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
+                'createdAt': {
+                    'type': Sequelize.DATE,
+                    'allowNull': false,
                 },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
+                'updatedAt': {
+                    'type': Sequelize.DATE,
+                    'allowNull': false,
                 },
-                "OrderId": {
-                    "type": Sequelize.INTEGER,
-                    "onUpdate": "CASCADE",
-                    "onDelete": "CASCADE",
-                    "references": {
-                        "model": "Orders",
-                        "key": "id"
+                'OrderId': {
+                    'type': Sequelize.INTEGER,
+                    'onUpdate': 'CASCADE',
+                    'onDelete': 'CASCADE',
+                    'references': {
+                        'model': 'Orders',
+                        'key': 'id',
                     },
-                    "allowNull": false
+                    'allowNull': false,
                 },
-                "FoodId": {
-                    "type": Sequelize.INTEGER,
-                    "onUpdate": "CASCADE",
-                    "onDelete": "CASCADE",
-                    "references": {
-                        "model": "Food",
-                        "key": "id"
+                'FoodId': {
+                    'type': Sequelize.INTEGER,
+                    'onUpdate': 'CASCADE',
+                    'onDelete': 'CASCADE',
+                    'references': {
+                        'model': 'Food',
+                        'key': 'id',
                     },
-                    "allowNull": false
-                }
+                    'allowNull': false,
+                },
             },
-            {}
-        ]
-    }
+            {},
+        ],
+    },
 ];
 
 module.exports = {
     pos: 0,
-    up: function(queryInterface, Sequelize)
-    {
-        var index = this.pos;
+    up: function(queryInterface, Sequelize) {
+        let index = this.pos;
         return new Promise(function(resolve, reject) {
             function next() {
-                if (index < migrationCommands.length)
-                {
-                    let command = migrationCommands[index];
-                    console.log("[#"+index+"] execute: " + command.fn);
+                if (index < migrationCommands.length) {
+                    const command = migrationCommands[index];
+                    console.log('[#'+index+'] execute: ' + command.fn);
                     index++;
-                    queryInterface[command.fn].apply(queryInterface, command.params).then(next, reject);
-                }
-                else
-                    resolve();
+                    queryInterface[command.fn](...command.params).then(next, reject);
+                } else {
+resolve();
+}
             }
             next();
         });
     },
-    info: info
+    info: info,
 };

@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     }, {});
-    User.associate = function (models) {
+    User.associate = function(models) {
 
     };
     return User;

@@ -8,26 +8,25 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
         type: DataTypes.FLOAT,
-    }, 
+    },
     weight: {
         type: DataTypes.FLOAT,
-    }, 
+    },
     imgUrl: {
         type: DataTypes.STRING(50),
-    }
+    },
   }, {});
   Food.associate = function(models) {
     const {
         Category,
     } = models;
-    
+
     Food.belongsTo(Category, {
         foreignKey: {
             allowNull: false,
         },
         onDelete: 'CASCADE',
     });
-    
   };
   return Food;
 };

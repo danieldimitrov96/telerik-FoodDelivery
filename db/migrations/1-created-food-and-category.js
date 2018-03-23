@@ -1,6 +1,6 @@
 'use strict';
 
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
 /**
  * Actions summary:
@@ -10,109 +10,107 @@ var Sequelize = require('sequelize');
  *
  **/
 
-var info = {
-    "revision": 1,
-    "name": "created-food-and-category",
-    "created": "2018-03-20T11:25:46.973Z",
-    "comment": ""
+const info = {
+    'revision': 1,
+    'name': 'created-food-and-category',
+    'created': '2018-03-20T11:25:46.973Z',
+    'comment': '',
 };
 
-var migrationCommands = [{
-        fn: "createTable",
+const migrationCommands = [{
+        fn: 'createTable',
         params: [
-            "Categories",
+            'Categories',
             {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
+                'id': {
+                    'type': Sequelize.INTEGER,
+                    'autoIncrement': true,
+                    'primaryKey': true,
+                    'allowNull': false,
                 },
-                "name": {
-                    "type": Sequelize.STRING(20),
-                    "allowNull": false,
-                    "unique": true
+                'name': {
+                    'type': Sequelize.STRING(20),
+                    'allowNull': false,
+                    'unique': true,
                 },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
+                'createdAt': {
+                    'type': Sequelize.DATE,
+                    'allowNull': false,
                 },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
-                }
+                'updatedAt': {
+                    'type': Sequelize.DATE,
+                    'allowNull': false,
+                },
             },
-            {}
-        ]
+            {},
+        ],
     },
     {
-        fn: "createTable",
+        fn: 'createTable',
         params: [
-            "Food",
+            'Food',
             {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
+                'id': {
+                    'type': Sequelize.INTEGER,
+                    'autoIncrement': true,
+                    'primaryKey': true,
+                    'allowNull': false,
                 },
-                "name": {
-                    "type": Sequelize.STRING(20),
-                    "allowNull": false,
-                    "unique": true
+                'name': {
+                    'type': Sequelize.STRING(20),
+                    'allowNull': false,
+                    'unique': true,
                 },
-                "price": {
-                    "type": Sequelize.FLOAT
+                'price': {
+                    'type': Sequelize.FLOAT,
                 },
-                "weight": {
-                    "type": Sequelize.FLOAT
+                'weight': {
+                    'type': Sequelize.FLOAT,
                 },
-                "imgUrl": {
-                    "type": Sequelize.STRING(50)
+                'imgUrl': {
+                    'type': Sequelize.STRING(50),
                 },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
+                'createdAt': {
+                    'type': Sequelize.DATE,
+                    'allowNull': false,
                 },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
+                'updatedAt': {
+                    'type': Sequelize.DATE,
+                    'allowNull': false,
                 },
-                "CategoryId": {
-                    "type": Sequelize.INTEGER,
-                    "onUpdate": "CASCADE",
-                    "onDelete": "CASCADE",
-                    "references": {
-                        "model": "Categories",
-                        "key": "id"
+                'CategoryId': {
+                    'type': Sequelize.INTEGER,
+                    'onUpdate': 'CASCADE',
+                    'onDelete': 'CASCADE',
+                    'references': {
+                        'model': 'Categories',
+                        'key': 'id',
                     },
-                    "allowNull": false
-                }
+                    'allowNull': false,
+                },
             },
-            {}
-        ]
-    }
+            {},
+        ],
+    },
 ];
 
 module.exports = {
     pos: 0,
-    up: function(queryInterface, Sequelize)
-    {
-        var index = this.pos;
+    up: function(queryInterface, Sequelize) {
+        let index = this.pos;
         return new Promise(function(resolve, reject) {
             function next() {
-                if (index < migrationCommands.length)
-                {
-                    let command = migrationCommands[index];
-                    console.log("[#"+index+"] execute: " + command.fn);
+                if (index < migrationCommands.length) {
+                    const command = migrationCommands[index];
+                    console.log('[#'+index+'] execute: ' + command.fn);
                     index++;
-                    queryInterface[command.fn].apply(queryInterface, command.params).then(next, reject);
-                }
-                else
-                    resolve();
+                    queryInterface[command.fn](...command.params).then(next, reject);
+                } else {
+resolve();
+}
             }
             next();
         });
     },
-    info: info
+    info: info,
 };

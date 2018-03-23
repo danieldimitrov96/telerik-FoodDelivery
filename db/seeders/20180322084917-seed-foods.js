@@ -2,7 +2,6 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    
       return queryInterface.bulkInsert('Food', [{
         id: 1,
         name: 'Potage',
@@ -12,7 +11,7 @@ module.exports = {
         CategoryId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }, 
+      },
       {
         id: 2,
         name: 'Ginger soup',
@@ -22,7 +21,7 @@ module.exports = {
         CategoryId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }, 
+      },
       {
         id: 3,
         price: 6.50,
@@ -32,7 +31,7 @@ module.exports = {
         CategoryId: 4,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }, 
+      },
       {
         id: 4,
         name: 'Tea',
@@ -42,7 +41,7 @@ module.exports = {
         CategoryId: 6,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }, 
+      },
       {
         id: 5,
         name: 'Cookies',
@@ -52,7 +51,7 @@ module.exports = {
         CategoryId: 5,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }, 
+      },
       {
         id: 6,
         name: 'Vegetariana',
@@ -62,12 +61,11 @@ module.exports = {
         CategoryId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }, 
+      },
     ], {});
-    
   },
 
   down: (queryInterface, Sequelize) => {
       return queryInterface.bulkDelete('Food', null, {});
-  }
+  },
 };
