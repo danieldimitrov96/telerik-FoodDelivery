@@ -8,14 +8,15 @@ const {
 } = require('../../db/models');
 
 const Data = require('./generic.data');
-const orderDetailsData = require('./order.details.data');
-const orderData = require('./order.data');
+const OrderDetailsData = require('./order.details.data');
+const OrderData = require('./order.data');
+const UserData = require('./user.data');
 // const FoodData = require('./food.data');
 
 module.exports = {
     food: new Data(Food),
     category: new Data(Category),
     order: new Data(Order),
-    orderDetails: new orderDetailsData(),
-    user: new Data(User),
+    orderDetails: new OrderDetailsData(),
+    user: new UserData(User),
 };

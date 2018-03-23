@@ -15,9 +15,9 @@ class Data {
     }
 
     create(obj) {
-        if (this._isObjectValid && !this._isObjectValid(obj)) {
-            throw new Error('Invalid object');
-        }
+        // if (this._isObjectValid && !this._isObjectValid(obj)) {
+            // throw new Error('Invalid object');
+        // }
 
         return this.Model.create(obj);
     }

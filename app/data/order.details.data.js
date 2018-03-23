@@ -5,7 +5,7 @@ const {
     OrderDetails,
 } = require('../../db/models');
 
-class orderDetailsData extends Data {
+class OrderDetailsData extends Data {
     constructor() {
         super(OrderDetails);
     }
@@ -19,4 +19,4 @@ class orderDetailsData extends Data {
     }
 }
 
-module.exports = orderDetailsData;
+module.exports = OrderDetailsData;

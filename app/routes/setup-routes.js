@@ -14,6 +14,9 @@ const init = (app, data) => {
     app.get('/', async (req, res) => {
         // console.log(req.flash);
 
+
+        console.log(req.user);
+
         const model = {
             username: 'My accaunt',
             isUserLogged: false,
@@ -22,7 +25,7 @@ const init = (app, data) => {
         // console.log(model.messages);
 
         if (req.user) {
-            model.username = 'Hello, ' + req.user.username;
+            model.username = 'Hello, ' + req.user.name;
             model.isUserLogged = req.isAuthenticated();
         }
         // console.log(model);
@@ -38,7 +41,7 @@ const init = (app, data) => {
         // console.log(model.messages);
 
         if (req.user) {
-            model.username = 'Hello, ' + req.user.username;
+            model.username = 'Hello, ' + req.user.name;
             model.isUserLogged = req.isAuthenticated();
         }
         // console.log(model);

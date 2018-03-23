@@ -24,10 +24,6 @@ $(document).ready(function () {
         $(".shopping-cart").fadeToggle("fast");
     });
 
-    $("a").css({
-        'color': 'orange'
-    });
-
     $("div.blog-post").hover(
         function () {
             $(this).find("div.content-hide").slideToggle("fast");
