@@ -51,7 +51,7 @@ describe('Test class Data of generic.data.js', () => {
         it('With valid Id expect object with Id property', async () => {
             const id = 3;
             const expectedObject = {
-                id
+                id,
             }
             sinon.stub(FakeModel, 'findById')
                 .returns(expectedObject);
@@ -70,6 +70,33 @@ describe('Test class Data of generic.data.js', () => {
             const actualObject = await data.getById(id);
 
             expect(actualObject).to.be.null;
+        });
+    });
+
+    describe('Test create(obj) method', () => {
+        it('should throw when invalid object passed', async () => {
+            const obj = {}
+            FakeModel.create = (obj) => {throw new Error };
+            const actualReturn = await FakeModel.create;
+
+            expect(actualReturn).to.throw();
+        });
+
+        it('should NOT throw when valid object passed', async () => {
+            const obj = {};
+            const actualReturn = await data.create(obj);
+
+            expect(actualReturn).to.not.throw;
+        });
+
+        it('should return object when valid object passed', async () => {
+            const obj = {};
+            const resultObj = {};
+            sinon.stub(FakeModel, 'create')
+                .returns(resultObj);
+            const actualReturn = await data.create(obj);
+
+            expect(resultObj).to.not.null;
         });
     });
 });
