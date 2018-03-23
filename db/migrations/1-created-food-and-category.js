@@ -12,7 +12,7 @@ var Sequelize = require('sequelize');
 
 var info = {
     "revision": 1,
-    "name": "created-food-nd-category",
+    "name": "created-food-and-category",
     "created": "2018-03-20T11:25:46.973Z",
     "comment": ""
 };

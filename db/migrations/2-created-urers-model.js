@@ -39,8 +39,16 @@ var migrationCommands = [{
             },
             "adress": {
                 "type": Sequelize.STRING(20),
-                "allowNull": false,
+            },
+            "email":
+            {
+                "type": Sequelize.STRING(20),
                 "unique": true
+            },
+            "password":
+            {
+                "type": Sequelize.STRING(20),
+                "allowNull": false
             },
             "createdAt": {
                 "type": Sequelize.DATE,
