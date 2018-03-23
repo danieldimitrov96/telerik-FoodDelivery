@@ -4,16 +4,18 @@ const fs = require('fs');
 const path = require('path');
 
 const init = (app, data) => {
-    // test route
     app.get('/', async (req, res) => {
         // console.log(req.flash);
-
+        const foods = await data.food.getAll();
+        const categories = await data.category.getAll();
         const model = {
             username: 'My accaunt',
             isUserLogged: false,
             messages: req.flash('error'),
+            foods: foods,
+            categories: categories,
         };
-        // console.log(model.messages);
+        console.log(model.foods[0]);
 
         if (req.user) {
             model.username = 'Hello, ' + req.user.name;

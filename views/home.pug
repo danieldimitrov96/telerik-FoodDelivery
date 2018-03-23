@@ -13,39 +13,30 @@ block content
             ul#filters.clearfix
               li
                 span.filter(data-filter='all') All
-              li
-                span.filter(data-filter='.soups') Soups
-              li
-                span.filter(data-filter='.drink') Drink
-              li
-                span.filter(data-filter='.mainDish') Main dish
+                
+              each category in categories 
+                li
+                  span.filter(data-filter='.'+ category.name.toLowerCase()) #{category.name}
+
         #Container.row
-          .col-md-3.col-sm-6.mix.portfolio-item.Pizza
-            .portfolio-wrapper
-              .portfolio-thumb
-                img(src='./../../static/images/product1.jpg', alt='')
-                .hover
-                  .hover-iner
-                    a.fancybox(href='./../../static/images/product1_big.jpg')
-                      img(src='./../../static/images/open-icon.png', alt='')
-                    span Pizza
-              .label-text
-                h3
-                  a(href='#') Vege Pizza
-                span.text-category $16.00
-          .col-md-3.col-sm-6.mix.portfolio-item.soups
-            .portfolio-wrapper
-              .portfolio-thumb
-                img(src='./../../static/images/product1.jpg', alt='')
-                .hover
-                  .hover-iner
-                    a.fancybox(href='./../../static/images/product1_big.jpg')
-                      img(src='./../../static/images/open-icon.png', alt='')
-                    span Pizza
-              .label-text
-                h3
-                  a(href='#') Vege Pizza
-                span.text-category $16.00        
+          each food in foods  
+            each category in categories 
+              if food.CategoryId === category.id
+                div(class="col-md-3 col-sm-6 mix portfolio-item "+category.name.toLowerCase())
+                  -var imgUrl=food.imgUrl;
+                  .portfolio-wrapper
+                    .portfolio-thumb
+                      img(src= '' + imgUrl)
+                      .hover
+                        .hover-iner
+                          a.fancybox(href='' + imgUrl)
+                            img(src='./../../static/images/open-icon.png')
+                          span #{category.name}
+                    .label-text
+                      h3
+                        a(href='#') #{food.name}
+                      span.text-category #{'$ '+food.price}    
+
         .pagination
           .row
             .col-md-12

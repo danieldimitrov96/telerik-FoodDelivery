@@ -5,7 +5,7 @@ const path = require('path');
 
 const init = (app, data) => {
     app.get('/api/foods', async (req, res) => {
-        const allFoods= await data.food.getAll();
+        const allFoods = await data.food.getAll();
         res.send(allFoods);
     });
 };
