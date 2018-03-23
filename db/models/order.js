@@ -3,9 +3,9 @@ module.exports = (sequelize, DataTypes) => {
     const Order = sequelize.define('Order', {
 
     }, {});
-    Order.associate = function (models) {
+    Order.associate = function(models) {
         const {
-            User
+            User,
         } = models;
 
         Order.belongsTo(User, {
@@ -15,6 +15,6 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'CASCADE',
         });
     };
-    
+
     return Order;
 };

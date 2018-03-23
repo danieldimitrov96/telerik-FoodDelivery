@@ -4,14 +4,9 @@ const fs = require('fs');
 const path = require('path');
 
 const init = (app, data) => {
-    app.get('/api/users', async (req, res) => {
-
-        const model = [{
-            username: 'pesho',
-            password: 'pesho',
-        }];
-
-        res.send(model);
+    app.get('/api/foods', async (req, res) => {
+        const allFoods = await data.food.getAll();
+        res.send(allFoods);
     });
 };
 module.exports = {

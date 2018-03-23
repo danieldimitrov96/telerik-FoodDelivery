@@ -4,28 +4,23 @@ const fs = require('fs');
 const path = require('path');
 
 const init = (app, data) => {
-
-    // test route
-    app.get('/test', async (req, res) => {
-        res.render('test');
-        // res.send("hi");
-    });
-    
     app.get('/', async (req, res) => {
         // console.log(req.flash);
-
+        const foods = await data.food.getAll();
+        const categories = await data.category.getAll();
         const model = {
             username: 'My accaunt',
             isUserLogged: false,
             messages: req.flash('error'),
+            foods: foods,
+            categories: categories,
         };
-        // console.log(model.messages);
+        // console.log(model.foods[0]);
 
         if (req.user) {
-            model.username = 'Hello, ' + req.user.username;
+            model.username = 'Hello, ' + req.user.name;
             model.isUserLogged = req.isAuthenticated();
         }
-        // console.log(model);
         res.render('home', model);
     });
 
@@ -38,7 +33,7 @@ const init = (app, data) => {
         // console.log(model.messages);
 
         if (req.user) {
-            model.username = 'Hello, ' + req.user.username;
+            model.username = 'Hello, ' + req.user.name;
             model.isUserLogged = req.isAuthenticated();
         }
         // console.log(model);

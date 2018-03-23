@@ -14,8 +14,16 @@ const init = (app, data) => {
     });
 
     app.post('/register', (req, res) => {
-        // data.users.create(req.body);
-        return res.redirect('/login');
+        data.user.create(req.body);
+        req.login(req.body, (err) => {
+            if (!err) {
+                res.redirect('/');
+            } else {
+                res.redirect('/');
+            }
+        });
+        // res.redirect('/');
+        // res.redirect(307, '/login');
     });
 };
 

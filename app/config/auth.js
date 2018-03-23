@@ -8,36 +8,33 @@ const {
     Strategy,
 } = require('passport-local');
 
-const users = [{
-    username: 'pesho',
-    password: 'pesho',
-}];
+// const users = [{
+//     username: 'pesho',
+//     password: 'pesho',
+// }];
 
 const init = (app, data) => {
-    passport.use(new Strategy(async (username, password, done) => {
-        // const user = await data.users.findByUsername(username);
-        const user = users[0];
+    passport.use(new Strategy(async (name, password, done) => {
+        const user = await data.user.findByUsername(name);
 
         if (!user || user.password !== password) {
             return done(null, false, {
                 message: 'Incorrect username or password.',
             });
         }
-
         // User with such username and password exists
         return done(null, user);
     }));
 
     // User to string
     passport.serializeUser((user, done) => {
-        done(null, user.username);
+        done(null, user.name);
     });
 
     // string to User
-    passport.deserializeUser(async (username, done) => {
+    passport.deserializeUser(async (name, done) => {
         // const user = await data.users.findByUsername(username);
-        const user = users[0];
-
+        const user = await data.user.findByUsername(name);
 
         if (!user) {
             return done(new Error('invalid used'));

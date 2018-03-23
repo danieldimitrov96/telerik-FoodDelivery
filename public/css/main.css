@@ -114,7 +114,6 @@ nav {
   .shopping-cart-header {
     border-bottom: 1px solid #E8E8E8;
     padding-bottom: 15px;
-    
   }
   .shopping-cart-items {
     padding-top: 20px;
@@ -179,14 +178,18 @@ nav {
   color: red;
 }
 
-.btn-danger{
+.btn-danger {
   float: right;
 }
 
 .shopping-cart-total {
-  margin-left:0;
+  margin-left: 0;
 }
 
-.btn-warning{
-  color:black !important;
+.btn-warning {
+  color: black !important;
+}
+
+a {
+  color: orange !important;
 }

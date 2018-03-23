@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         Order,
         Food,
     } = models;
-    
+
     OrderDetails.belongsTo(Order, {
         foreignKey: {
           allowNull: false,
@@ -25,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         onDelete: 'CASCADE',
       });
-      
   };
   return OrderDetails;
 };

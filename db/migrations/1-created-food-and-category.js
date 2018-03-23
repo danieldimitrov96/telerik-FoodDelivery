@@ -5,23 +5,22 @@ const Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * createTable "Orders", deps: [Users]
- * createTable "OrderDetails", deps: [Orders, Food]
+ * createTable "Categories", deps: []
+ * createTable "Food", deps: [Categories]
  *
  **/
 
 const info = {
-    'revision': 3,
-    'name': 'created-orders-and-order-details',
-    'created': '2018-03-21T10:06:11.000Z',
+    'revision': 1,
+    'name': 'created-food-and-category',
+    'created': '2018-03-20T11:25:46.973Z',
     'comment': '',
 };
 
-const migrationCommands = [
-    {
+const migrationCommands = [{
         fn: 'createTable',
         params: [
-            'Orders',
+            'Categories',
             {
                 'id': {
                     'type': Sequelize.INTEGER,
@@ -29,22 +28,17 @@ const migrationCommands = [
                     'primaryKey': true,
                     'allowNull': false,
                 },
+                'name': {
+                    'type': Sequelize.STRING(20),
+                    'allowNull': false,
+                    'unique': true,
+                },
                 'createdAt': {
                     'type': Sequelize.DATE,
                     'allowNull': false,
                 },
                 'updatedAt': {
                     'type': Sequelize.DATE,
-                    'allowNull': false,
-                },
-                'UserId': {
-                    'type': Sequelize.INTEGER,
-                    'onUpdate': 'CASCADE',
-                    'onDelete': 'CASCADE',
-                    'references': {
-                        'model': 'Users',
-                        'key': 'id',
-                    },
                     'allowNull': false,
                 },
             },
@@ -54,7 +48,7 @@ const migrationCommands = [
     {
         fn: 'createTable',
         params: [
-            'OrderDetails',
+            'Food',
             {
                 'id': {
                     'type': Sequelize.INTEGER,
@@ -62,9 +56,19 @@ const migrationCommands = [
                     'primaryKey': true,
                     'allowNull': false,
                 },
-                'quantity': {
-                    'type': Sequelize.INTEGER,
+                'name': {
+                    'type': Sequelize.STRING(20),
                     'allowNull': false,
+                    'unique': true,
+                },
+                'price': {
+                    'type': Sequelize.FLOAT,
+                },
+                'weight': {
+                    'type': Sequelize.FLOAT,
+                },
+                'imgUrl': {
+                    'type': Sequelize.STRING(50),
                 },
                 'createdAt': {
                     'type': Sequelize.DATE,
@@ -74,22 +78,12 @@ const migrationCommands = [
                     'type': Sequelize.DATE,
                     'allowNull': false,
                 },
-                'OrderId': {
+                'CategoryId': {
                     'type': Sequelize.INTEGER,
                     'onUpdate': 'CASCADE',
                     'onDelete': 'CASCADE',
                     'references': {
-                        'model': 'Orders',
-                        'key': 'id',
-                    },
-                    'allowNull': false,
-                },
-                'FoodId': {
-                    'type': Sequelize.INTEGER,
-                    'onUpdate': 'CASCADE',
-                    'onDelete': 'CASCADE',
-                    'references': {
-                        'model': 'Food',
+                        'model': 'Categories',
                         'key': 'id',
                     },
                     'allowNull': false,
