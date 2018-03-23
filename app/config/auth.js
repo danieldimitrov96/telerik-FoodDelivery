@@ -8,7 +8,6 @@ const {
     Strategy,
 } = require('passport-local');
 
-const Data = require('../data');
 // const users = [{
 //     username: 'pesho',
 //     password: 'pesho',
@@ -16,7 +15,7 @@ const Data = require('../data');
 
 const init = (app, data) => {
     passport.use(new Strategy(async (name, password, done) => {
-        const user = await Data.user.findByUsername(name);
+        const user = await data.user.findByUsername(name);
 
         if (!user || user.password !== password) {
             return done(null, false, {
@@ -35,7 +34,7 @@ const init = (app, data) => {
     // string to User
     passport.deserializeUser(async (name, done) => {
         // const user = await data.users.findByUsername(username);
-        const user = await Data.user.findByUsername(name);
+        const user = await data.user.findByUsername(name);
 
         if (!user) {
             return done(new Error('invalid used'));

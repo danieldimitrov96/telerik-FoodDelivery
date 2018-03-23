@@ -4,18 +4,9 @@ const fs = require('fs');
 const path = require('path');
 
 const init = (app, data) => {
-
     // test route
-    app.get('/test', async (req, res) => {
-        res.render('test');
-        // res.send("hi");
-    });
-    
     app.get('/', async (req, res) => {
         // console.log(req.flash);
-
-
-        console.log(req.user);
 
         const model = {
             username: 'My accaunt',
@@ -28,7 +19,6 @@ const init = (app, data) => {
             model.username = 'Hello, ' + req.user.name;
             model.isUserLogged = req.isAuthenticated();
         }
-        // console.log(model);
         res.render('home', model);
     });
 
