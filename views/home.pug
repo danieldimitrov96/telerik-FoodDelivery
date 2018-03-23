@@ -13,7 +13,7 @@ block content
             ul#filters.clearfix
               li
                 span.filter(data-filter='all') All
-                
+
               each category in categories 
                 li
                   span.filter(data-filter='.'+ category.name.toLowerCase()) #{category.name}
@@ -26,10 +26,10 @@ block content
                   -var imgUrl=food.imgUrl;
                   .portfolio-wrapper
                     .portfolio-thumb
-                      img(src= '' + imgUrl)
+                      img(src= '' + imgUrl +'.jpg')
                       .hover
                         .hover-iner
-                          a.fancybox(href='' + imgUrl)
+                          a.fancybox(href='' + imgUrl +'_big.jpg')
                             img(src='./../../static/images/open-icon.png')
                           span #{category.name}
                     .label-text

@@ -15,7 +15,15 @@ const init = (app, data) => {
 
     app.post('/register', (req, res) => {
         data.user.create(req.body);
-        return res.redirect('/');
+        req.login(req.body, (err) => {
+            if (!err) {
+                res.redirect('/');
+            } else {
+                res.redirect('/');
+            }
+        });
+        // res.redirect('/');
+        // res.redirect(307, '/login');
     });
 };
 

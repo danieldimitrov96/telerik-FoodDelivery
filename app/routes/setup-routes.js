@@ -15,7 +15,7 @@ const init = (app, data) => {
             foods: foods,
             categories: categories,
         };
-        console.log(model.foods[0]);
+        // console.log(model.foods[0]);
 
         if (req.user) {
             model.username = 'Hello, ' + req.user.name;
