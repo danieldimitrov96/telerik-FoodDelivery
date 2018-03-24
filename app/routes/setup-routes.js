@@ -17,7 +17,7 @@ const init = (app, data) => {
         // console.log(model.foods[0]);
 
         if (req.user) {
-            model.username = 'Hello, ' + req.user.name;
+            model.username = req.user.name.charAt(0).toUpperCase() + req.user.name.slice(1) + '\'s orders';
             model.isUserLogged = req.isAuthenticated();
         }
         res.render('home', model);
@@ -32,7 +32,7 @@ const init = (app, data) => {
         // console.log(model.messages);
 
         if (req.user) {
-            model.username = 'Hello, ' + req.user.name;
+            model.username = req.user.name.charAt(0).toUpperCase() + req.user.name.slice(1) + '\'s orders';
             model.isUserLogged = req.isAuthenticated();
         }
         // console.log(model);

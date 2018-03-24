@@ -197,3 +197,59 @@ nav {
 a {
   color: orange !important;
 }
+
+
+
+.checkout {
+  margin: 20px 20px;
+  float: right;
+  background: white;
+  width: 320px;
+  padding: 20px;
+  border: 2px solid #545454;
+  border-radius: 25px;
+  .checkout-header {
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 15px;
+  }
+  .checkout-items {
+    
+    padding-top: 20px;
+
+    li {
+      margin-bottom: 18px;
+    }
+    img {
+      float: left;
+      margin-right: 12px;
+    }
+    .item-name {
+      display: block;
+      padding-top: 10px;
+      font-size: 16px;
+    }
+    .item-price {
+      color: $main-color;
+      margin-right: 8px;
+    }
+    .item-quantity {
+      color: $light-text;
+    }
+  }
+}
+
+.checkout {
+  z-index: 3;
+  position: absolute !important;
+}
+
+.checkout-items {
+    
+  padding-left: 0 !important;
+}
+
+.text-center{
+  display: block;
+  font-size:20px;
+  font-weight: bold;
+}

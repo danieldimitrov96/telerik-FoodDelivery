@@ -5,8 +5,17 @@ $(document).ready(function () {
     });
 
     $("#cart").on("click", function () {
+        $(".checkout").hide("slow");
         $(".shopping-cart").fadeToggle("fast");
+        
+    }); 
+
+    $("#userCheckout").on("click", function () {
+        $(".shopping-cart").hide("slow");
+        $(".checkout").fadeToggle("fast");
     });
+
+
 
     $("div.blog-post").hover(
         function () {
