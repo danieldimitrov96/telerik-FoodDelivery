@@ -1,3 +1,16 @@
+function validateForm() {
+    var name = document.forms["regForm"]["name"].value;
+    var phone = document.forms["regForm"]["phone"].value;
+    var password = document.forms["regForm"]["password"].value;
+    if (name == '' || phone == '' || password == '') {
+        if ($('.input-error').length === 0) {
+            $('.tab-content').prepend('<div class=\'input-error\'></div>')
+        }
+        $('.input-error').html('Please fill all inputs');
+        return false;
+    }
+}
+
 $(document).ready(function () {
 
     $(' .shopping-cart-items').css({
@@ -17,7 +30,7 @@ $(document).ready(function () {
         }
     );
 
-    
+
 
     // Instantiate MixItUp:
 
@@ -25,9 +38,17 @@ $(document).ready(function () {
 
     $(".fancybox").fancybox();
 
-    if ($('.input-error').html()){
-        $('#myAccaunt').click();
+    var error = $('.input-error').html();
+    if (error) {
+        if (error.includes('already taken')) {
+            $('#myAccaunt').click();
+            $('#regTab').click();
+        } else {
+            $('#myAccaunt').click();
+        }
     }
+
+
 
 
 
@@ -40,5 +61,5 @@ $(document).ready(function () {
 
     })
 
-   
+
 });

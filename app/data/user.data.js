@@ -16,6 +16,14 @@ class UserData extends Data {
             },
         });
     }
+
+    findByPhone(phone) {
+        return this.Model.findOne({
+            where: {
+                phone: phone,
+            },
+        });
+    }
 }
 
 module.exports = UserData;

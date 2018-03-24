@@ -5,7 +5,6 @@ const path = require('path');
 
 const init = (app, data) => {
     app.get('/', async (req, res) => {
-        // console.log(req.flash);
         const foods = await data.food.getAll();
         const categories = await data.category.getAll();
         const model = {
