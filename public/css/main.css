@@ -186,6 +186,10 @@ nav {
   margin-left: 0;
 }
 
+.error{
+  color:red;
+}
+
 .btn-warning {
   color: black !important;
 }

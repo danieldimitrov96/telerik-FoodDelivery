@@ -1,16 +1,3 @@
-function validateForm() {
-    var name = document.forms["regForm"]["name"].value;
-    var phone = document.forms["regForm"]["phone"].value;
-    var password = document.forms["regForm"]["password"].value;
-    if (name == '' || phone == '' || password == '') {
-        if ($('.input-error').length === 0) {
-            $('.tab-content').prepend('<div class=\'input-error\'></div>')
-        }
-        $('.input-error').html('Please fill all inputs');
-        return false;
-    }
-}
-
 $(document).ready(function () {
 
     $(' .shopping-cart-items').css({

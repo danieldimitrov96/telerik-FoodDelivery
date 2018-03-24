@@ -3,3 +3,6 @@ node_modules
 
 # Logs and databases
 *.log
+
+#istanbul
+.nyc_output
