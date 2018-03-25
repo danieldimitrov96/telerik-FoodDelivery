@@ -5,21 +5,22 @@ mixin header()
       meta(name='description', content='')
       meta(name='viewport', content='width=device-width')
       link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800', rel='stylesheet', type='text/css')
-      link(rel='stylesheet', href='./../../static/css/font-awesome.css')
-      link(rel='stylesheet', href='./../../static/css/templatemo_style.css')
-      link(rel='stylesheet', href='./../../static/css/templatemo_misc.css')
-      link(rel='stylesheet', href='./../../static/css/flexslider.css')
-      link(rel='stylesheet', href='./../../static/css/testimonails-slider.css')
-      link(rel='stylesheet', href='../../static/css/main.css')
-      //- script(src='//code.jquery.com/jquery-1.11.1.min.js')
-      script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+      link(rel='stylesheet', href='/static/css/font-awesome.css')
+      link(rel='stylesheet', href='/static/css/templatemo_style.css')
+      link(rel='stylesheet', href='/static/css/templatemo_misc.css')
+      link(rel='stylesheet', href='/static/css/flexslider.css')
+      link(rel='stylesheet', href='/static/css/testimonails-slider.css')
+      link(rel='stylesheet', href='/static/css/main.css')
 
+      script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+      script(src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js")
       link#bootstrap-css(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css', rel='stylesheet')
       script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
-      script(src='./../../static/js/vendor/jquery.gmap3.min.js')
-      script(src='./../../static/js/plugins.js')
-      script(src='./../../static/js/main.js')
-      script(src='./../../static/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js')
+      script(src='/static/js/vendor/jquery.gmap3.min.js')
+      script(src='/static/js/plugins.js')
+      script(src='/static/js/main.js')
+      script(src='/static/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js')
+      script(src='/static/js/validate-forms.js')
     header
       #top-header
         .container
@@ -29,7 +30,7 @@ mixin header()
                 a(href='/', id='homeButton') Home
                 
                 if isUserLogged
-                    a.btn(href='#') 
+                    a.btn(id='userCheckout') 
                         =username
                     a.btn(href='/logout') Log out
                 else
@@ -78,13 +79,35 @@ mixin header()
                 button.btn.btn-primary.btn-danger.btn-xs(type='button') remove X    
           a.button.btn-warning(href='#') Checkout
         //- end shopping-cart
+
+
+
+
+        .row
+        .checkout.col-xs-10(style='display:none')
+          .checkout-header
+            span.main-color-text.text-center Your orders
+          //- end checkout-header
+          ul.checkout-items
+            li.clearfix.list-group-item
+              img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg', alt='item1')
+              span.item-name Sony DSC-RX100M III
+              div
+                span.item-price $849.99
+              div
+                span.item-quantity Quantity: 01
+        //- end checkout
+
+
+
+
       #main-header
         .container
           .row
             .col-md-3
               .logo
                 a(href='#')
-                  img(src='./../../static/images/logo.png', title='Grill Template', alt='Grill Website Template')
+                  img(src='/static/images/logo.png', title='Grill Template', alt='Grill Website Template')
             .col-md-6
               .main-menu
                 ul

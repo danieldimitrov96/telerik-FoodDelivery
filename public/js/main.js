@@ -5,8 +5,17 @@ $(document).ready(function () {
     });
 
     $("#cart").on("click", function () {
+        $(".checkout").hide("slow");
         $(".shopping-cart").fadeToggle("fast");
+        
+    }); 
+
+    $("#userCheckout").on("click", function () {
+        $(".shopping-cart").hide("slow");
+        $(".checkout").fadeToggle("fast");
     });
+
+
 
     $("div.blog-post").hover(
         function () {
@@ -17,7 +26,7 @@ $(document).ready(function () {
         }
     );
 
-    
+
 
     // Instantiate MixItUp:
 
@@ -25,9 +34,17 @@ $(document).ready(function () {
 
     $(".fancybox").fancybox();
 
-    if ($('.input-error').html()){
-        $('#myAccaunt').click();
+    var error = $('.input-error').html();
+    if (error) {
+        if (error.includes('already taken')) {
+            $('#myAccaunt').click();
+            $('#regTab').click();
+        } else {
+            $('#myAccaunt').click();
+        }
     }
+
+
 
 
 
@@ -40,5 +57,5 @@ $(document).ready(function () {
 
     })
 
-   
+
 });
