@@ -10,10 +10,10 @@ describe('Test class OrderData extends Data', () => {
     let FakeOrderModel = null;
 
     beforeEach(() => {
-        // FakeOrderDetailsModel = {
-        //     findAll: (id) => {},
-        // };
-        orderData = new OrderData();
+        FakeOrderModel = {
+            findAll: (id) => {},
+        };
+        orderData = new OrderData(FakeOrderModel);
     });
 
     describe('Instance test', () => {

@@ -11,7 +11,7 @@ describe('Test class OrderDetailsData extends Data', () => {
 
     beforeEach(() => {
         FakeOrderDetailsModel = {
-            findAll: (id) => {},
+            findAll: () => {},
         };
         orderDetailsData = new OrderDetailsData(FakeOrderDetailsModel);
     });
