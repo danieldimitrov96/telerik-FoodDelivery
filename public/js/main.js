@@ -15,19 +15,6 @@ $(document).ready(function () {
         $(".checkout").fadeToggle("fast");
     });
 
-
-
-    $("div.blog-post").hover(
-        function () {
-            $(this).find("div.content-hide").slideToggle("fast");
-        },
-        function () {
-            $(this).find("div.content-hide").slideToggle("fast");
-        }
-    );
-
-
-
     // Instantiate MixItUp:
 
     $('#Container').mixItUp();
