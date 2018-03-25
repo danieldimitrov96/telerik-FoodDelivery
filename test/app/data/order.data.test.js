@@ -5,7 +5,7 @@ const sinon = require('sinon');
 
 const OrderData = require('../../../app/data/order.data');
 
-describe('Test class OrderData', () => {
+describe('Test class OrderData extends Data', () => {
     let orderData = null;
     let FakeOrderModel = null;
 

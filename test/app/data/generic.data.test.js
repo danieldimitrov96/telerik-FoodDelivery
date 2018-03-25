@@ -19,13 +19,13 @@ describe('Test class Data of generic.data.js', () => {
     });
 
     describe('Instance test', () => {
-        it("It should be Data instance ", () => {
+        it("should be Data instance ", () => {
             expect(data instanceof Data).to.equal(true, "Should be instance of class Data");
         });
     });
 
     describe('Test getAll() method', () => {
-        it('It should return array deeply equal of Models array', async () => {
+        it('should return array deeply equal of Models array', async () => {
             const expectedModelsArr = [1, 2, 3, 4];
             sinon.stub(FakeModel, 'findAll')
                 .returns(expectedModelsArr);
@@ -35,7 +35,7 @@ describe('Test class Data of generic.data.js', () => {
             expect(actualModelsArr).deep.equal(expectedModelsArr);
         });
 
-        it('It should return empty array deeply equal of FakeModels array', async () => {
+        it('should return empty array deeply equal of FakeModels array', async () => {
             const expectedModelsArr = [];
             sinon.stub(FakeModel, 'findAll')
                 .returns([]);
@@ -48,7 +48,7 @@ describe('Test class Data of generic.data.js', () => {
     });
 
     describe('Test getById(id) method', () => {
-        it('With valid Id expect object with Id property', async () => {
+        it('with valid Id expect object with Id property', async () => {
             const id = 3;
             const expectedObject = {
                 id,
@@ -62,7 +62,7 @@ describe('Test class Data of generic.data.js', () => {
             expect(actualObject.id).deep.equal(id);
         });
 
-        it('With invalid Id expect return null', async () => {
+        it('with invalid Id expect return null', async () => {
             const id = 3;
             sinon.stub(FakeModel, 'findById')
                 .returns(null);

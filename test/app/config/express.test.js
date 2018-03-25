@@ -10,18 +10,22 @@ const {
 describe('Test init() method of app/config/express.js', () => {
     it('should throw when invalid app passed', () => {
         const invalidApp = {};
-        const actualResult = init;
+        const targetFunction = () => {
+            init(invalidApp);
+        };
 
-        expect(actualResult).to.throw();
+        expect(targetFunction).to.throw('Invalid app');
     });
 
     it('should NOT throw when valid app passed', () => {
         const validApp = {
-            use: ()=> {},
-            set: ()=> {},
+            use: () => {},
+            set: () => {},
         };
-        const actualResult = init;
+        const targetFunction = () => {
+            init(validApp);
+        };;
 
-        expect(actualResult).to.not.throw;
+        expect(targetFunction).to.not.throw;
     });
 });
