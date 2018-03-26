@@ -258,3 +258,11 @@ a {
   height: 5em;
   width: 5em;
 }
+
+.feedbackRecieved{
+  color:green;
+  font-size:18px;
+  display: inline-block;
+  float: right;
+  font-weight: bold;
+}

@@ -17,6 +17,26 @@ $(document).ready(function () {
         }
     });
 
+    $('#feedbackForm').validate({
+        rules: {
+            name: {
+                required: true,
+                rangelength: [2, 15],
+            },
+            subject: {
+                rangelength: [1, 50],
+            },
+            email: {
+                required: true,
+                rangelength: [1, 50],
+            },
+            text: {
+                required: true,
+                rangelength: [1, 500],
+            },
+        }
+    });
+
     $('#logForm').validate({
         rules: {
             username: {

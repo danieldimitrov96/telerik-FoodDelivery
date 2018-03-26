@@ -16,12 +16,12 @@ block content
                 .row
                   .col-md-8
                     .message-form
-                      form.send-message(action='#', method='post')
-                        .row
+                      form.send-message(id='feedbackForm', action='/feedback', method='post')
+                        .rowform
                           .name.col-md-4
                             input#nameContact(type='text', name='name', placeholder='Name')
                           .email.col-md-4
-                            input#emailContact(type='text', name='email', placeholder='Email')
+                            input#emailContact(type='email', name='email', placeholder='Email')
                           .subject.col-md-4
                             input#subjectContact(type='text', name='subject', placeholder='Subject')
                         .row
@@ -29,6 +29,9 @@ block content
                             textarea(name='text', placeholder='Message')
                         .send
                           button(type='submit') Send
+                          if feedbackSent
+                            .feedbackRecieved
+                              | Feedback is recieved
                   .col-md-4
                     .info
                       p

@@ -1,10 +1,10 @@
-
 const {
     Food,
     Category,
     Order,
     OrderDetails,
     User,
+    Feedback,
 } = require('../../db/models');
 
 const Data = require('./generic.data');
@@ -19,4 +19,5 @@ module.exports = {
     order: new OrderData(Order, [User]),
     orderDetails: new OrderDetailsData(OrderDetails, [Order, Food]),
     user: new UserData(User),
+    feedback: new Data(Feedback),
 };

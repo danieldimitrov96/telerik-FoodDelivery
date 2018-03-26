@@ -20,12 +20,12 @@ const init = (app, data) => {
         if (req.user) {
             const orders = await data.order.findOrderByUserId(req.user.id);
 
-           await Promise.all(
-            orders.map(async (order) => {
-                const details = await data.orderDetails.findByOrderId(order.id);
-                order.details = details;
-            }));
-           
+            await Promise.all(
+                orders.map(async (order) => {
+                    const details = await data.orderDetails.findByOrderId(order.id);
+                    order.details = details;
+                }));
+
             // console.log(orders[0].UserId)
             model.orders = orders;
             // console.log(model.orders[0].details[0].Food.imgUrl);
@@ -51,6 +51,28 @@ const init = (app, data) => {
         // console.log(model);
         res.render('contacts', model);
     });
+
+    app.post('/feedback', async (req, res) => {
+
+        const model = {
+            username: 'My accaunt',
+            isUserLogged: false,
+            feedbackSent: false,
+            messages: req.flash('error'),
+        };
+
+        if (req.user) {
+            model.username = req.user.name.charAt(0).toUpperCase() + req.user.name.slice(1) + '\'s orders';
+            model.isUserLogged = req.isAuthenticated();
+        }
+
+        if (await data.feedback.create(req.body)) {
+            model.feedbackSent = true;
+        }
+
+        res.render('contacts', model);
+    });
+
 
     /** dynamically load all routes */
     fs.readdirSync(__dirname)
