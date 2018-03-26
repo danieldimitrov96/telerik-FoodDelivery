@@ -1,8 +1,8 @@
 const Data = require('./generic.data');
 
-class orderData extends Data {
-    constructor(Order, [OrderDetails]) {
-        super(Order, [OrderDetails]);
+class OrderData extends Data {
+    constructor(Order) {
+        super(Order);
     }
 
     _isObjectValid(obj) {
@@ -18,4 +18,4 @@ class orderData extends Data {
     }
 }
 
-module.exports = orderData;
+module.exports = OrderData;
