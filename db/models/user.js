@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
         name: {
@@ -19,12 +20,21 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
         },
         password: {
-            type: DataTypes.STRING(20),
+            type: DataTypes.STRING,
             allowNull: false,
         },
-    }, {});
-    User.associate = function(models) {
+    }, {
+        hooks: {
+            beforeSave: async (user, options) => {
+                user.password = await bcrypt.hash(user.password, 5);
+                return user;
+            },
+        },
+    });
 
+    User.prototype.comparePassword = async function(passwordAttempt) {
+        const isMatch = await bcrypt.compare(passwordAttempt, this.password);
+        return isMatch;
     };
     return User;
 };

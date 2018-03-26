@@ -206,7 +206,7 @@
                 },
                 "password": {
                     "allowNull": false,
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.STRING(20)"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -220,5 +220,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }
