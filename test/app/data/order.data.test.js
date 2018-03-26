@@ -35,4 +35,24 @@ describe('Test class OrderData extends Data', () => {
             expect(actualResult).to.be.false;
         });
     });
+
+    describe('Test findOrderByUserId() method', () => {
+        it("should return object when valid username passed", async () => {
+            const validUserId = 2;
+            const expectedOrderArr = ['Kufteta', 5];
+            sinon.stub(FakeOrderModel, 'findAll')
+                .returns(expectedOrderArr);
+            const actualResult = await orderData.findOrderByUserId(validUserId);
+            expect(actualResult).deep.equal(expectedOrderArr);
+        });
+
+        it('should return null when invalid username passed ', async () => {
+            const invalidUserId = 34;
+            const expectedOrderArr = null;
+            sinon.stub(FakeOrderModel, 'findAll')
+                .returns(expectedOrderArr);
+            const actualResult = await orderData.findOrderByUserId(invalidUserId);
+            expect(actualResult).deep.equal(expectedOrderArr);
+        });
+    });
 });
