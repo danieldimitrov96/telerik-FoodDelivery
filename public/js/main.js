@@ -7,13 +7,20 @@ $(document).ready(function () {
     $("#cart").on("click", function () {
         $(".checkout").hide("slow");
         $(".shopping-cart").fadeToggle("fast");
-        
-    }); 
+        $('.close').click();
+    });
 
-    $("#userCheckout").on("click", function () {
+    $("#userOrders").on("click", function () {
         $(".shopping-cart").hide("slow");
         $(".checkout").fadeToggle("fast");
+        $('.close').click();
     });
+
+    $('#myAccaunt').on('click', ()=>{
+        $(".shopping-cart").hide("fast");
+    })
+
+
 
     // Instantiate MixItUp:
 
@@ -31,10 +38,6 @@ $(document).ready(function () {
         }
     }
 
-
-
-
-
     $('h3').on('click', () => {
         $this = $(this);
         // console.log($this.text())
@@ -42,7 +45,6 @@ $(document).ready(function () {
         // addToCart();
         //use data attr when db is set
 
-    })
-
+    });
 
 });

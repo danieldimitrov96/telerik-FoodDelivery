@@ -30,7 +30,7 @@ mixin header()
                 a(href='/', id='homeButton') Home
                 
                 if isUserLogged
-                    a.btn(id='userCheckout') 
+                    a.btn(id='userOrders') 
                         =username
                     a.btn(href='/logout') Log out
                 else
@@ -53,30 +53,17 @@ mixin header()
               span.main-color-text $2,229.97
           //- end shopping-cart-header
           ul.shopping-cart-items
+
+            //- foreach item in cart ->checkout
             li.clearfix.list-group-item
-              img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg', alt='item1')
+              img(src='/static/images/product1.jpg', class='cartOrderImages' alt='item1')
               span.item-name Sony DSC-RX100M III
               div
                 span.item-price $849.99
               div
                 span.item-quantity Quantity: 01
-                button.btn.btn-primary.btn-danger.btn-xs(type='button') remove X
-            li.clearfix.list-group-item
-              img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg', alt='item1')
-              span.item-name Sony DSC-RX100M III
-              div
-                span.item-price $849.99
-              div
-                span.item-quantity Quantity: 01
-                button.btn.btn-primary.btn-danger.btn-xs(type='button') remove X
-            li.clearfix.list-group-item
-              img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg', alt='item1')
-              span.item-name Sony DSC-RX100M III
-              div
-                span.item-price $849.99
-              div
-                span.item-quantity Quantity: 01
-                button.btn.btn-primary.btn-danger.btn-xs(type='button') remove X    
+                button.btn.btn-primary.btn-danger.btn-xs(type='button') Remove
+            
           a.button.btn-warning(href='#') Checkout
         //- end shopping-cart
 
@@ -89,8 +76,8 @@ mixin header()
             span.main-color-text.text-center Your orders
           //- end checkout-header
           ul.checkout-items
-            li.clearfix.list-group-item
-              img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg', alt='item1')
+            li.clearfix.list-group-item 
+              img(src='/static/images/product1.jpg', class='cartOrderImages' alt='item1')
               span.item-name Sony DSC-RX100M III
               div
                 span.item-price $849.99
