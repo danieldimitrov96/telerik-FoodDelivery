@@ -247,7 +247,10 @@ a {
     
   padding-left: 0 !important;
 }
-
+.clearfix{
+  padding: 0 !important;
+  padding-right: 15px !important;
+}
 .text-center{
   display: block;
   font-size:20px;
