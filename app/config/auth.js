@@ -33,7 +33,6 @@ const init = (app, data) => {
 
     // string to User
     passport.deserializeUser(async (name, done) => {
-        // const user = await data.users.findByUsername(username);
         const user = await data.user.findByUsername(name);
 
         if (!user) {
