@@ -9,30 +9,10 @@ const init = (app, data) => {
         res.send(allFoods);
     });
 
-
-    app.get('/user', async (req, res) => {
-
-        const test = await data.order.findByOrderId(1);
-
-        const model = {
-            test: test,
-        };
-        res.send(model);
-        
-        // console.log(model.foods[0]);
-        // console.log(req.user);
-        // if (req.user) {
-        //     model.isUserLogged = req.isAuthenticated();
-        //     res.send(model);
-
-        // } else {
-        //     res.redirect('/');
-        // }
+    app.get('/api/categories', async (req, res) => {
+        const foodCategories = await data.category.getAll();
+        res.send(foodCategories);
     });
-
-
-
-
 };
 module.exports = {
     init,
