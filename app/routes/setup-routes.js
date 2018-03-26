@@ -7,6 +7,7 @@ const init = (app, data) => {
     app.get('/', async (req, res) => {
         const foods = await data.food.getAll();
         const categories = await data.category.getAll();
+
         const model = {
             username: 'My accaunt',
             isUserLogged: false,
@@ -17,6 +18,18 @@ const init = (app, data) => {
         // console.log(model.foods[0]);
 
         if (req.user) {
+            const orders = await data.order.findOrderByUserId(req.user.id);
+
+           await Promise.all(
+            orders.map(async (order) => {
+                const details = await data.orderDetails.findByOrderId(order.id);
+                order.details = details;
+            }));
+           
+            // console.log(orders[0].UserId)
+            model.orders = orders;
+            // console.log(model.orders[0].details[0].Food.imgUrl);
+            // console.log(model.orders);
             model.username = req.user.name.charAt(0).toUpperCase() + req.user.name.slice(1) + '\'s orders';
             model.isUserLogged = req.isAuthenticated();
         }
