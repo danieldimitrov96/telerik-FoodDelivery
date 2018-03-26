@@ -1,8 +1,8 @@
 const Data = require('./generic.data');
 
 class OrderData extends Data {
-    constructor(Order) {
-        super(Order);
+    constructor(model, includes) {
+        super(model, includes);
     }
 
     _isObjectValid(obj) {
@@ -14,6 +14,7 @@ class OrderData extends Data {
             where: {
                 UserId: userId,
             },
+            include: this.includes,
         });
     }
 }

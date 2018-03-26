@@ -14,9 +14,9 @@ const UserData = require('./user.data');
 // const FoodData = require('./food.data');
 
 module.exports = {
-    food: new Data(Food),
+    food: new Data(Food, [Category]),
     category: new Data(Category),
-    order: new OrderData(Order),
-    orderDetails: new OrderDetailsData(OrderDetails),
+    order: new OrderData(Order, [User]),
+    orderDetails: new OrderDetailsData(OrderDetails, [Order, Food]),
     user: new UserData(User),
 };

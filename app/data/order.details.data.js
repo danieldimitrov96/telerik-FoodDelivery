@@ -1,8 +1,8 @@
 const Data = require('./generic.data');
 
 class OrderDetailsData extends Data {
-    constructor(OrderDetails) {
-        super(OrderDetails);
+    constructor(model, includes) {
+        super(model, includes);
     }
 
     findByOrderId(orderId) {
@@ -10,6 +10,7 @@ class OrderDetailsData extends Data {
             where: {
                 OrderId: orderId,
             },
+            include: this.includes,
         });
     }
 }
