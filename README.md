@@ -1,7 +1,7 @@
 # FoodDelivery - Team project
 __Authors:__ Slavka Todorova, Daniel Dimitrov, Kaloyan Stoynev   
-__Organization:__ Telerik Alpha 2017   
-**Purpose:** education, excercise Node.js, Express, MariaDB, Sequelize ORM, Pug, JQuery, MVC structure, AJAX, project timing, Git-clients, GitHub and team colaboration.  
+__Organization:__ Telerik JS Alpha 2017   
+**Purpose:** education, excercise Node.js, Express, MariaDB, Sequelize ORM, Pug, Passport, JQuery, MVC structure, AJAX, project timing, Git-clients, GitHub and team colaboration.  
 **App Type:** This is a Standart Web Application using backend and frontend technologies.  
 **Short description:** Food delivery web app. The client choose food and drinks from the provided categories. After registration and loggin it can send orders and access private details. There is feedback form and map location...
 
