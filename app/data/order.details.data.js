@@ -1,12 +1,7 @@
 const Data = require('./generic.data');
 
-const {
-    Order,
-    OrderDetails,
-} = require('../../db/models');
-
 class OrderDetailsData extends Data {
-    constructor() {
+    constructor(OrderDetails) {
         super(OrderDetails);
     }
 
