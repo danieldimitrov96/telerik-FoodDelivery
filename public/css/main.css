@@ -266,3 +266,12 @@ a {
   float: right;
   font-weight: bold;
 }
+
+.bold{
+  font-weight: bold;
+  font-size:16px;
+}
+
+.text-item{
+  font-weight: bold;
+}
