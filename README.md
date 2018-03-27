@@ -1,17 +1,10 @@
-# FoodDelivery - Team project
-__Authors:__ Slavka Todorova, Daniel Dimitrov, Kaloyan Stoynev   
-__Organization:__ Telerik JS Alpha 2017   
-**Purpose:** education, excercise Node.js, Express, MariaDB, Sequelize ORM, Pug, Passport, JQuery, MVC structure, AJAX, project timing, Git-clients, GitHub and team colaboration.  
-**App Type:** This is a Standart Web Application using backend and frontend technologies.  
-**Short description:** Food delivery web app. The client choose food and drinks from the provided categories. After registration and loggin it can send orders and access private details. There is feedback form and map location...
-# FoodDelivery - Team project
+![alt text](./public/images/logo.png) 
+# FoodDelivery - Team project 
 __Authors:__ [Slavka Todorova](https://github.com/SlaviTod), [Daniel Dimitrov](https://github.com/danieldimitrov96), [Kaloyan Stoynev](https://github.com/PamirKalo)   
 __Organization:__ [Telerik](http://telerikacademy.com/) JS Alpha Nov-2017   
 **Purpose:** education, excercise Node.js, Express, MariaDB, Sequelize ORM, Pug, Passport, JQuery, MVC structure, AJAX, RESTful API, project timing, Git-clients, GitHub and team colaboration.  
 **App Type:** This is a Standart Web Application using backend and frontend technologies.  
-**Short functional description:** Food delivery web app. The client choose food and drinks from the provided categories. After registration and loggin it can send orders and access private details. There is feedback form and map location...
-
-
+**Short functional description:** Food delivery web application. Clients can order food from the provided categories. After registration and log in they can send orders and access private details for their history orders. There is feedback form and map location...
 
 ## Web apps with Node.js: Teamwork assignment
 ## Project Description
