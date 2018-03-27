@@ -15,10 +15,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "obenittqyfidwmru",
+    "password": "rnaWVrcExJ7C4D4VyrvsDVJo8z2iNEDPFAHGAq3qaNgSVqRBqFSKgwrCKUXuy3YZ",
+    "database": "dbdb056ee7404b417aa6e0a8b00141acb5",
+    "host": "db056ee7-404b-417a-a6e0-a8b00141acb5.mysql.sequelizer.com",
     "dialect": "mysql"
   }
 }
