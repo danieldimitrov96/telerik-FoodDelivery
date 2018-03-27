@@ -24,7 +24,7 @@ block content
               if food.CategoryId === category.id
                 div(class="col-md-3 col-sm-6 mix portfolio-item "+category.name.toLowerCase())
                   -var imgUrl=food.imgUrl;
-                  .portfolio-wrapper
+                  .portfolio-wrapper(data-id = food.id)
                     .portfolio-thumb
                       img(src= '' + imgUrl +'.jpg')
                       .hover
@@ -35,7 +35,7 @@ block content
                     .label-text
                       h3
                         a(href='#') #{food.name}
-                      span.text-category #{'$ '+food.price}    
+                      span.text-category #{'$ '+food.price}
 
         .pagination
           .row

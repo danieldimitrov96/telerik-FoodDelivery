@@ -42,28 +42,29 @@ mixin header()
                 a#cart(href='#')
                   i.fa.fa-shopping-cart
                   |  Cart
-                  span.badge 3
+                  span.badge #{newBasket.length}
       .row
         .shopping-cart.col-xs-offset-9.pull-right(style='display:none')
           .shopping-cart-header
             li.fa.fa-shopping-cart.cart-icon
-            span.badge 3
+            span.badge #{newBasket.length}
             .shopping-cart-total
               span.lighter-text Total:
-              span.main-color-text $2,229.97
+              span.main-color-text $ #{total}
           //- end shopping-cart-header
-          ul.shopping-cart-items
+          ul.shopping-cart-items(id='basket')
 
             //- foreach item in cart ->checkout
-            li.clearfix.list-group-item
-              img(src='/static/images/product1.jpg', class='cartOrderImages' alt='item1')
-              span.item-name Sony DSC-RX100M III
-              div
-                span.item-price $849.99
-              div
-                span.item-quantity Quantity: 01
-                button.btn.btn-primary.btn-danger.btn-xs(type='button') Remove
-            
+            each orderDetails in newBasket 
+              li.clearfix.list-group-item
+                img(src=orderDetails.food.imgUrl+'.jpg', class='cartOrderImages' alt=orderDetails.food.name)
+                span.item-name #{orderDetails.food.name}
+                div
+                  span.item-price Price: #{orderDetails.food.price}
+                div
+                  span.item-quantity Quantity: #{orderDetails.quantity}
+                  button.btn.btn-primary.btn-danger.btn-xs(type='button') Remove
+              
           a.button.btn-warning(href='#') Checkout
         //- end shopping-cart
 
@@ -75,23 +76,23 @@ mixin header()
           .checkout-header
             span.main-color-text.text-center 
               =username
-            //- end checkout-header
-            if orders
-              each order in orders
-                ul.list-group.checkout-items.text-item
-                    p.bold
-                      |Order from #{order.createdAt.toString().substr(0, order.createdAt.toString().length - 19)}
-                    each orderDetails in order.details  
-                      li.clearfix.list-group-item
-                        img(src= orderDetails.Food.imgUrl +'.jpg' , class='cartOrderImages' alt='item1')
-                        span.item-name 
-                          =orderDetails.Food.name + ', '
-                        div(style='display:inline-block') 
-                          span.item-price
-                            |Price: $ #{orderDetails.Food.price + ', '} 
-                        div(style='display:inline-block') 
-                          span.item-quantity 
-                            |Quantity: #{orderDetails.quantity}  
+          //- end checkout-header
+          if orders
+            each order in orders
+              ul.checkout-items 
+                li 
+                  |Order from #{order.createdAt}
+                  each orderDetails in order.details  
+                    li.clearfix.list-group-item 
+                      img(src= orderDetails.Food.imgUrl +'.jpg' , class='cartOrderImages' alt='item1')
+                      span.item-name 
+                        =orderDetails.Food.name
+                      div
+                        span.item-price
+                          |$ #{orderDetails.Food.price}
+                      div
+                        span.item-quantity 
+                          |Quantity: #{orderDetails.quantity}
 
         //- end checkout
 
