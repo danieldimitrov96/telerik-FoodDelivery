@@ -78,21 +78,21 @@ mixin header()
               =username
           //- end checkout-header
           if orders
-            each order in orders
-              ul.checkout-items 
-                li 
-                  |Order from #{order.createdAt}
-                  each orderDetails in order.details  
-                    li.clearfix.list-group-item 
-                      img(src= orderDetails.Food.imgUrl +'.jpg' , class='cartOrderImages' alt='item1')
-                      span.item-name 
-                        =orderDetails.Food.name
-                      div
-                        span.item-price
-                          |$ #{orderDetails.Food.price}
-                      div
-                        span.item-quantity 
-                          |Quantity: #{orderDetails.quantity}
+              each order in orders
+                ul.list-group.checkout-items.text-item
+                    p.bold
+                      |Order from #{order.createdAt.toString().substr(0, order.createdAt.toString().length - 19)}
+                    each orderDetails in order.details  
+                      li.clearfix.list-group-item
+                        img(src= orderDetails.Food.imgUrl +'.jpg' , class='cartOrderImages' alt='item1')
+                        span.item-name 
+                          =orderDetails.Food.name + ', '
+                        div(style='display:inline-block') 
+                          span.item-price
+                            |Price: $ #{orderDetails.Food.price + ', '} 
+                        div(style='display:inline-block') 
+                          span.item-quantity 
+                            |Quantity: #{orderDetails.quantity}  
 
         //- end checkout
 
