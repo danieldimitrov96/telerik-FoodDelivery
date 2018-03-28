@@ -42,12 +42,12 @@ mixin header()
                 a#cart(href='#')
                   i.fa.fa-shopping-cart
                   |  Cart
-                  span.badge #{newBasket.length}
+                  span.badge 0
       .row
         .shopping-cart.col-xs-offset-9.pull-right(style='display:none')
           .shopping-cart-header
             li.fa.fa-shopping-cart.cart-icon
-            span.badge #{newBasket.length}
+            span.badge 
             .shopping-cart-total
               span.lighter-text Total:
               span.main-color-text $ #{total}
@@ -55,15 +55,15 @@ mixin header()
           ul.shopping-cart-items(id='basket')
 
             //- foreach item in cart ->checkout
-            each orderDetails in newBasket 
-              li.clearfix.list-group-item
-                img(src=orderDetails.food.imgUrl+'.jpg', class='cartOrderImages' alt=orderDetails.food.name)
-                span.item-name #{orderDetails.food.name}
-                div
-                  span.item-price Price: #{orderDetails.food.price}
-                div
-                  span.item-quantity Quantity: #{orderDetails.quantity}
-                  button.btn.btn-primary.btn-danger.btn-xs(type='button') Remove
+            //- each orderDetails in newBasket 
+            //-   li.clearfix.list-group-item
+            //-     img(src=orderDetails.food.imgUrl+'.jpg', class='cartOrderImages' alt=orderDetails.food.name)
+            //-     span.item-name #{orderDetails.food.name}
+            //-     div
+            //-       span.item-price Price: #{orderDetails.food.price}
+            //-     div
+            //-       span.item-quantity Quantity: #{orderDetails.quantity}
+            //-       button.btn.btn-primary.btn-danger.btn-xs(type='button') Remove
               
           a.button.btn-warning(href='#') Checkout
         //- end shopping-cart

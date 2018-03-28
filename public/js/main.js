@@ -80,7 +80,7 @@ $(document).ready(function () {
             });
         }
         localStorage['basket'] = JSON.stringify(foods);
-
+        console.log(localStorage['basket']);
     });
 
     // $('h3').on('click', () => {
@@ -90,6 +90,6 @@ $(document).ready(function () {
     //     // addToCart();
     //     //use data attr when db is set
 
-    });
+    // });
 
 });
