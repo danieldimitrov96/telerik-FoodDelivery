@@ -65,7 +65,7 @@ mixin header()
             //-       span.item-quantity Quantity: #{orderDetails.quantity}
             //-       button.btn.btn-primary.btn-danger.btn-xs(type='button') Remove
               
-          a.button.btn-warning(href='#') Checkout
+          button.button.btn-lg.btn-warning(href='#') Checkout
         //- end shopping-cart
 
 
@@ -104,7 +104,7 @@ mixin header()
           .row
             .col-md-3
               .logo
-                a(href='#')
+                a(href='/')
                   img(src='/static/images/logo.png', title='Grill Template', alt='Grill Website Template')
             .col-md-6
               .main-menu
@@ -116,6 +116,6 @@ mixin header()
             .col-md-3
               .search-box
                 form.search_form(name='search_form', method='get')
-                  input#search(type='text' placeholder="Search is not working...")
+                  input#search(type='text' placeholder="Search is for decoration...")
                   input#search-button(type='submit')
                   

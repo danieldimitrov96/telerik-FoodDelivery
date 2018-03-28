@@ -192,6 +192,7 @@ nav {
 
 .btn-warning {
   color: black !important;
+  width:100%; 
 }
 
 a {
