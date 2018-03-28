@@ -16,7 +16,7 @@ $(document).ready(function () {
         $('.close').click();
     });
 
-    $('#myAccaunt').on('click', ()=>{
+    $('#myAccaunt').on('click', () => {
         $(".shopping-cart").hide("fast");
     })
 
@@ -39,6 +39,13 @@ $(document).ready(function () {
     }
 
     $('.portfolio-thumb').on('click', (event) => {
+
+        // feedback animation
+        setTimeout(function () {
+            $('.fancybox-skin').slideUp(400);
+            $('.fancybox-close').click();
+        }, 1200);
+
         let $parent = $(event.target).closest('.portfolio-wrapper');
 
         const foodImgUrl = $parent.find('img').first().attr('src');
@@ -65,14 +72,14 @@ $(document).ready(function () {
         // save in lockal storage 
         var foods = JSON.parse(localStorage['basket'] || "[]");
 
-        const isInBasket = false; 
+        let isInBasket = false;
         foods.map((food) => {
-            if(food.id === foodId)  {
-                food.quantity +=1;
+            if (food.id === foodId) {
+                food.quantity += 1;
                 isInBasket = true;
             }
         });
-        if(!isInBasket) {
+        if (!isInBasket) {
             foods.push({
                 id: foodId,
                 quantity: 1,
@@ -82,14 +89,4 @@ $(document).ready(function () {
         localStorage['basket'] = JSON.stringify(foods);
         console.log(localStorage['basket']);
     });
-
-    // $('h3').on('click', () => {
-    //     $this = $(this);
-    //     // console.log($this.text())
-
-    //     // addToCart();
-    //     //use data attr when db is set
-
-    // });
-
 });
