@@ -1,16 +1,14 @@
 $(document).ready(function () {
-    // localStorage.clear();
-
-    console.log('pesho');
-    // const arr2 = [];
-    // checkout process
-    localStorage.setItem('basket', JSON.stringify([]));
+    if (typeof localStorage.basket === undefined) {
+        localStorage.setItem('basket', JSON.stringify([]));
+    } else {
+        //TODO: load cart from local storage
+    }
 
     const orderDetailsSuccess = (response) => {
-        
-        console.log('checkout success');
         alert('checkout success');
         $("#basket").empty();
+        localStorage.clear();
     }
 
     const orderDetailsError = (error) => {
@@ -75,12 +73,12 @@ $(document).ready(function () {
             return;
         } else if (foodObj['quantity'] > 1) {
             foodObj['quantity'] -= 1;
-            
+
             $ul.find('.item-quantity').first().html(foodObj['quantity']);
             $ul.find('.item-total').first().html('Quantity: ' + foodObj['quantity']);
             $basket.find(`[data-inbasket=${foodId}] .item-total`)
-                .first().html(foodObj['quantity']*(+foodObj['price']));
-            
+                .first().html(foodObj['quantity'] * (+foodObj['price']));
+
         } else {
             basketArr.splice(foodObjIndex, 1);
             $ul.empty();
@@ -89,7 +87,7 @@ $(document).ready(function () {
         $foodCounterBadge.html(currentFoodCounter - 1);
         const $foodCounterBadge2 = $('.shopping-cart-header .badge').first();
         $foodCounterBadge2.html(currentFoodCounter - 1);
-       
+
         localStorage.setItem('basket', JSON.stringify(basketArr));
     }
 
@@ -127,7 +125,7 @@ $(document).ready(function () {
             $basket.find(`[data-inbasket=${foodId}] .item-quantity`)
                 .first().html('Quantity: ' + foodObj['quantity']);
             $basket.find(`[data-inbasket=${foodId}] .item-total`)
-                .first().html('Sum: $ '+ foodObj['quantity']*priceAsNr);
+                .first().html('Sum: $ ' + foodObj['quantity'] * priceAsNr);
         } else {
             basketArr.push({
                 foodId: foodId,
@@ -163,4 +161,22 @@ $(document).ready(function () {
             $('#myAccaunt').click();
         }
     }
+
+    $(document).mouseup(function (e) {
+        var container = $(".shopping-cart");
+
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.hide(400);
+        }
+    });
+
+    $(document).mouseup(function (e) {
+        var container = $(".checkout");
+
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.hide(400);
+        }
+    });
 });
