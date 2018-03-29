@@ -1,5 +1,39 @@
 $(document).ready(function () {
-    localStorage.clear();
+    // localStorage.clear();
+
+    console.log('pesho');
+    // const arr2 = [];
+    // checkout process
+    localStorage.setItem('basket', JSON.stringify([]));
+
+    const orderDetailsSuccess = (response) => {
+        
+        console.log('checkout success');
+        alert('checkout success');
+        $("#basket").empty();
+    }
+
+    const orderDetailsError = (error) => {
+        alert("Network error, try again");
+    }
+
+    const sendOrderDetails = () => {
+        const data = JSON.parse(localStorage.getItem('basket'));
+
+        if (data.length === 0) {
+            console.log('localStorage empty basket ');
+            return;
+        }
+
+        $.post({
+                method: 'POST',
+                url: '/checkout',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+            })
+            .then(orderDetailsSuccess)
+            .catch(orderDetailsError);
+    }
 
     $(' .shopping-cart-items').css({
         'padding-left': '0'
@@ -20,6 +54,11 @@ $(document).ready(function () {
     $('#myAccaunt').on('click', () => {
         $(".shopping-cart").hide("fast");
     })
+
+    $("#checkoutBtn").on("click", function () {
+        console.log('checkot button clicked');
+        sendOrderDetails();
+    });
 
     // add to basket process:
     const takeOutFromBasket = (event) => {

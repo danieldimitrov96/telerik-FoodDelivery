@@ -21,6 +21,8 @@ const init = (app) => {
         extended: true,
     }));
 
+    app.use(bodyParser.json());
+
     // decorator
     app.use('/static', express.static(path.join(__dirname, '../../public')));
 

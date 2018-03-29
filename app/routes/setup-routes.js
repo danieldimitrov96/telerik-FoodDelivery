@@ -54,8 +54,27 @@ const init = (app, data) => {
         res.render('contacts', model);
     });
 
-    app.post('/feedback', async (req, res) => {
+    app.post('/checkout', async (req, res) => {
+        if (!req.user) {
+            res.send('You must log in');
+        } else {
+            console.log(req.body);
+            const orderRecord = await data.order.create({
+                UserId: req.user.id,
+            });
+            Array.from(req.body).forEach(async (obj) => {
+                await data.orderDetails.create({
+                    quantity: obj.quantity,
+                    OrderId: orderRecord.id,
+                    FoodId: obj.foodId,
+                });
+            });
 
+            res.send("Checkout button clicked Ser and userId is ");
+        }
+    });
+
+    app.post('/feedback', async (req, res) => {
         const model = {
             username: 'My accaunt',
             isUserLogged: false,
