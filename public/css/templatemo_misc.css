@@ -83,10 +83,6 @@ http://www.templatemo.com/preview/templatemo_417_grill
 	max-height: 100%;
 }
 
-#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-	background-image: url('../images/fancybox_sprite.png');
-}
-
 #fancybox-loading {
 	position: fixed;
 	top: 50%;
@@ -102,7 +98,6 @@ http://www.templatemo.com/preview/templatemo_417_grill
 #fancybox-loading div {
 	width: 44px;
 	height: 44px;
-	background: url('../images/fancybox_loading.gif') center center no-repeat;
 }
 
 .fancybox-close {
@@ -192,7 +187,6 @@ http://www.templatemo.com/preview/templatemo_417_grill
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: url('../images/fancybox_overlay.png');
 }
 
 .fancybox-overlay-fixed {
