@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    localStorage.clear();
 
     $(' .shopping-cart-items').css({
         'padding-left': '0'
@@ -20,10 +21,96 @@ $(document).ready(function () {
         $(".shopping-cart").hide("fast");
     })
 
+    // add to basket process:
+    const takeOutFromBasket = (event) => {
+        const $ul = $(event.currentTarget).parent();
+        const foodId = $ul.data('inbasket');
+        const $foodCounterBadge = $('.cart-info .badge').first();
+        const currentFoodCounter = Number($foodCounterBadge.html());
 
+        const basketArr = JSON.parse(localStorage.getItem('basket'));
+        const foodObjIndex = basketArr.findIndex((obj) => obj['foodId'] === foodId);
+        const foodObj = basketArr[foodObjIndex];
+
+        if (!foodObj) {
+            return;
+        } else if (foodObj['quantity'] > 1) {
+            foodObj['quantity'] -= 1;
+            
+            $ul.find('.item-quantity').first().html(foodObj['quantity']);
+            $ul.find('.item-total').first().html('Quantity: ' + foodObj['quantity']);
+            $basket.find(`[data-inbasket=${foodId}] .item-total`)
+                .first().html(foodObj['quantity']*(+foodObj['price']));
+            
+        } else {
+            basketArr.splice(foodObjIndex, 1);
+            $ul.empty();
+        }
+
+        $foodCounterBadge.html(currentFoodCounter - 1);
+        const $foodCounterBadge2 = $('.shopping-cart-header .badge').first();
+        $foodCounterBadge2.html(currentFoodCounter - 1);
+       
+        localStorage.setItem('basket', JSON.stringify(basketArr));
+    }
+
+    const foodItemTemplate = (foodId, foodImgUrl, foodName, price) => {
+        const btn = $('<button>').addClass('btn btn-primary btn-danger btn-xs')
+            .attr('type', 'button').html('Remove');
+        $(btn).on('click', takeOutFromBasket);
+
+        return itemTemplate = $('<li>').addClass('clearfix list-group-item').attr('data-inbasket', foodId)
+            .append($(`<img src=${foodImgUrl}>`).addClass('cartOrderImages'))
+            .append($(`<span>${foodName}</span>`).addClass('item-name'))
+            .append($(`<div> Price: ${price}</div>`).append($('<span>').addClass('item-price')))
+            .append($('<div>').append($(`<span> Quantity: ${1}</span>`).addClass('item-quantity')))
+            .append($('<div>').append($(`<span>Sum: ${price}</span>`).addClass('item-total')))
+            .append(btn);
+    }
+
+    const addFoodToBasket = (event) => {
+        const $parent = $(event.currentTarget).closest('.portfolio-wrapper');
+        const $basket = $('#basket');
+        const $foodCounterBadge = $('.cart-info .badge').first();
+        const currentFoodCounter = Number($foodCounterBadge.html());
+
+        const foodId = $parent.data('foodid');
+        const foodImgUrl = $parent.find('img').first().attr('src');
+        const foodName = $parent.find('h3 a').first().html();
+        const price = $parent.find('.text-category').first().html();
+        const priceAsNr = parseFloat(price.substring(2).trim());
+
+        const basketArr = JSON.parse(localStorage['basket'] || "[]");
+        const foodObj = basketArr.find((obj) => obj['foodId'] === foodId);
+
+        if (foodObj) {
+            foodObj['quantity'] += 1;
+            $basket.find(`[data-inbasket=${foodId}] .item-quantity`)
+                .first().html('Quantity: ' + foodObj['quantity']);
+            $basket.find(`[data-inbasket=${foodId}] .item-total`)
+                .first().html('Sum: $ '+ foodObj['quantity']*priceAsNr);
+        } else {
+            basketArr.push({
+                foodId: foodId,
+                quantity: 1,
+                price: priceAsNr,
+            });
+            const template = foodItemTemplate(foodId, foodImgUrl, foodName, price);
+            $basket.append(template);
+        }
+
+        $foodCounterBadge.html(currentFoodCounter + 1);
+        const $foodCounterBadge2 = $('.shopping-cart-header .badge').first();
+        $foodCounterBadge2.html(currentFoodCounter + 1);
+
+        localStorage.setItem('basket', JSON.stringify(basketArr));
+    }
+
+    $('[data-foodid]').toArray().forEach(foodItem => {
+        $(foodItem).on('click', 'a:first', addFoodToBasket);
+    });
 
     // Instantiate MixItUp:
-
     $('#Container').mixItUp();
 
     $(".fancybox").fancybox();
@@ -37,56 +124,4 @@ $(document).ready(function () {
             $('#myAccaunt').click();
         }
     }
-
-    $('.portfolio-thumb').on('click', (event) => {
-
-        // feedback animation
-        setTimeout(function () {
-            $('.fancybox-skin').slideUp(400);
-            $('.fancybox-close').click();
-        }, 1200);
-
-        let $parent = $(event.target).closest('.portfolio-wrapper');
-
-        const foodImgUrl = $parent.find('img').first().attr('src');
-
-        const foodId = $parent.data('id');
-        const foodName = $parent.find('h3 a').first().html();
-        const price = $parent.find('.text-category').first().html();
-        const priceAsNr = parseFloat(price.substring(2).trim());
-        const quantity = 1;
-
-        const itemTemplate = $('<li>').addClass('clearfix list-group-item')
-            .append($('<img>').addClass('cartOrderImages'))
-            .append($('<span>').addClass('item-name'))
-            .append($('<div>').append($('<span>').addClass('item-price')))
-            .append($('<div>').append($('<span>').addClass('item-quantity')))
-            .append($('<button>').addClass('btn btn-primary btn-danger btn-xs').attr('type', 'button').html('Remove'));
-
-        itemTemplate.find('.cartOrderImages').attr('src', foodImgUrl);
-        itemTemplate.find('.item-name').html(foodName);
-        itemTemplate.find('.item-price').html('Price: ' + price);
-        itemTemplate.find('.item-quantity').html('Quantity: ' + quantity);
-        $('#basket').append(itemTemplate);
-
-        // save in lockal storage 
-        var foods = JSON.parse(localStorage['basket'] || "[]");
-
-        let isInBasket = false;
-        foods.map((food) => {
-            if (food.id === foodId) {
-                food.quantity += 1;
-                isInBasket = true;
-            }
-        });
-        if (!isInBasket) {
-            foods.push({
-                id: foodId,
-                quantity: 1,
-                price: priceAsNr,
-            });
-        }
-        localStorage['basket'] = JSON.stringify(foods);
-        console.log(localStorage['basket']);
-    });
 });

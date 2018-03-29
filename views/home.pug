@@ -24,18 +24,19 @@ block content
               if food.CategoryId === category.id
                 div(class="col-md-3 col-sm-6 mix portfolio-item "+category.name.toLowerCase())
                   -var imgUrl=food.imgUrl;
-                  .portfolio-wrapper(data-id = food.id)
+                  .portfolio-wrapper(data-foodid = food.id)
                     .portfolio-thumb
                       img(src= '' + imgUrl +'.jpg')
                       .hover
-                        .hover-iner
-                          a.fancybox(href='/static/images/checkout-light.png')
+                        div.hover-iner
+                          a
                             img(src='./../../static/images/open-icon.png')
                           span #{category.name}
                     .label-text
                       h3
-                        a(href='#') #{food.name}
+                        a.fancybox(href='' + imgUrl +'_big.jpg') #{food.name}
                       span.text-category #{'$ '+food.price}
+                        
 
         .pagination
           .row
