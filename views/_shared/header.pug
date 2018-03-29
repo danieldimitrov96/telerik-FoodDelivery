@@ -80,7 +80,7 @@ mixin header()
               each order in orders
                 ul.list-group.checkout-items.text-item
                     p.bold
-                      |Order from #{order.createdAt.toString().substr(0, order.createdAt.toString().length - 19)}
+                      |Order from #{order.createdAt.toString().substr(0, order.createdAt.toString().length - 18)}
                     each orderDetails in order.details  
                       li.clearfix.list-group-item
                         img(src= orderDetails.Food.imgUrl +'.jpg' , class='cartOrderImages' alt='item1')
