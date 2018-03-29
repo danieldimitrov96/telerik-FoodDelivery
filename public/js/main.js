@@ -75,13 +75,21 @@ $(document).ready(function () {
             return;
         } else if (foodObj['quantity'] > 1) {
             foodObj['quantity'] -= 1;
+            
             $ul.find('.item-quantity').first().html(foodObj['quantity']);
+            $ul.find('.item-total').first().html('Quantity: ' + foodObj['quantity']);
+            $basket.find(`[data-inbasket=${foodId}] .item-total`)
+                .first().html(foodObj['quantity']*(+foodObj['price']));
+            
         } else {
             basketArr.splice(foodObjIndex, 1);
             $ul.empty();
         }
 
         $foodCounterBadge.html(currentFoodCounter - 1);
+        const $foodCounterBadge2 = $('.shopping-cart-header .badge').first();
+        $foodCounterBadge2.html(currentFoodCounter - 1);
+       
         localStorage.setItem('basket', JSON.stringify(basketArr));
     }
 
@@ -93,8 +101,9 @@ $(document).ready(function () {
         return itemTemplate = $('<li>').addClass('clearfix list-group-item').attr('data-inbasket', foodId)
             .append($(`<img src=${foodImgUrl}>`).addClass('cartOrderImages'))
             .append($(`<span>${foodName}</span>`).addClass('item-name'))
-            .append($(`<div>${price}</div>`).append($('<span>').addClass('item-price')))
-            .append($('<div>').append($(`<span>${1}</span>`).addClass('item-quantity')))
+            .append($(`<div> Price: ${price}</div>`).append($('<span>').addClass('item-price')))
+            .append($('<div>').append($(`<span> Quantity: ${1}</span>`).addClass('item-quantity')))
+            .append($('<div>').append($(`<span>Sum: ${price}</span>`).addClass('item-total')))
             .append(btn);
     }
 
@@ -116,17 +125,23 @@ $(document).ready(function () {
         if (foodObj) {
             foodObj['quantity'] += 1;
             $basket.find(`[data-inbasket=${foodId}] .item-quantity`)
-                .first().html(foodObj['quantity']);
+                .first().html('Quantity: ' + foodObj['quantity']);
+            $basket.find(`[data-inbasket=${foodId}] .item-total`)
+                .first().html('Sum: $ '+ foodObj['quantity']*priceAsNr);
         } else {
             basketArr.push({
                 foodId: foodId,
                 quantity: 1,
+                price: priceAsNr,
             });
             const template = foodItemTemplate(foodId, foodImgUrl, foodName, price);
             $basket.append(template);
         }
 
         $foodCounterBadge.html(currentFoodCounter + 1);
+        const $foodCounterBadge2 = $('.shopping-cart-header .badge').first();
+        $foodCounterBadge2.html(currentFoodCounter + 1);
+
         localStorage.setItem('basket', JSON.stringify(basketArr));
     }
 
