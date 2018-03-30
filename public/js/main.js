@@ -76,7 +76,7 @@ $(document).ready(function () {
 
             $ul.find('.item-quantity').first().html(foodObj['quantity']);
             $ul.find('.item-total').first().html('Quantity: ' + foodObj['quantity']);
-            $(#basket).find(`[data-inbasket=${foodId}] .item-total`)
+            $('#basket').find(`[data-inbasket=${foodId}] .item-total`)
                 .first().html(foodObj['quantity'] * (+foodObj['price']));
 
         } else {
