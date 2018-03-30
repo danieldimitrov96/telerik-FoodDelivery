@@ -58,7 +58,7 @@ $(document).ready(function () {
         sendOrderDetails();
     });
 
-    // add to basket process:
+    // remuve from the basket:
     const takeOutFromBasket = (event) => {
         const $ul = $(event.currentTarget).parent();
         const foodId = $ul.data('inbasket');
@@ -74,16 +74,15 @@ $(document).ready(function () {
         } else if (foodObj['quantity'] > 1) {
             foodObj['quantity'] -= 1;
 
-            $ul.find('.item-quantity').first().html(foodObj['quantity']);
-            $ul.find('.item-total').first().html('Quantity: ' + foodObj['quantity']);
-            $('#basket').find(`[data-inbasket=${foodId}] .item-total`)
-                .first().html(foodObj['quantity'] * (+foodObj['price']));
-
+            $ul.find('.item-quantity').first().html('Quantity: ' + foodObj['quantity']);
+           $('#basket').find(`[data-inbasket=${foodId}] .item-total`)
+                .first().html('Sum: ' + foodObj['quantity'] * (+foodObj['price']));
         } else {
             basketArr.splice(foodObjIndex, 1);
             $ul.empty();
         }
-
+        const totalSum = calculateTotalSum(basketArr);
+        $('.shopping-cart-total .main-color-text').html('$ ' + totalSum);
         $foodCounterBadge.html(currentFoodCounter - 1);
         const $foodCounterBadge2 = $('.shopping-cart-header .badge').first();
         $foodCounterBadge2.html(currentFoodCounter - 1);
@@ -91,6 +90,7 @@ $(document).ready(function () {
         localStorage.setItem('basket', JSON.stringify(basketArr));
     }
 
+    
     const foodItemTemplate = (foodId, foodImgUrl, foodName, price) => {
         const btn = $('<button>').addClass('btn btn-primary btn-danger btn-xs')
             .attr('type', 'button').html('Remove');
@@ -104,7 +104,7 @@ $(document).ready(function () {
             .append($('<div>').append($(`<span>Sum: ${price}</span>`).addClass('item-total')))
             .append(btn);
     }
-
+    // add to basket:
     const addFoodToBasket = (event) => {
         const $parent = $(event.currentTarget).closest('.portfolio-wrapper');
         const $basket = $('#basket');
@@ -117,7 +117,7 @@ $(document).ready(function () {
         const price = $parent.find('.text-category').first().html();
         const priceAsNr = parseFloat(price.substring(2).trim());
 
-        const basketArr = JSON.parse(localStorage['basket'] || "[]");
+        const basketArr = JSON.parse(localStorage['basket'] || '[]');
         const foodObj = basketArr.find((obj) => obj['foodId'] === foodId);
 
         if (foodObj) {
@@ -139,8 +139,17 @@ $(document).ready(function () {
         $foodCounterBadge.html(currentFoodCounter + 1);
         const $foodCounterBadge2 = $('.shopping-cart-header .badge').first();
         $foodCounterBadge2.html(currentFoodCounter + 1);
+        
+        const totalSum = calculateTotalSum(basketArr);
+        $('.shopping-cart-total .main-color-text').html('$ ' + totalSum);
 
         localStorage.setItem('basket', JSON.stringify(basketArr));
+    }
+
+    const calculateTotalSum = (basketArr) => {
+        const total = basketArr.reduce((s, x) => 
+            s + x.quantity*x.price, 0);
+            return total;
     }
 
     $('[data-foodid]').toArray().forEach(foodItem => {
