@@ -21,11 +21,13 @@ const init = (app, data) => {
             const orders = await data.order.findOrderByUserId(req.user.id);
             await Promise.all(
                 orders.map(async (order) => {
-                    const details = await data.orderDetails.findByOrderId(order.id);
+                    const details = await data.orderDetails
+                        .findByOrderId(order.id);
                     order.details = details;
                 }));
             model.orders = orders;
-            model.username = req.user.name.charAt(0).toUpperCase() + req.user.name.slice(1) + '\'s orders';
+            model.username = req.user.name.charAt(0).toUpperCase() +
+                req.user.name.slice(1) + '\'s orders';
             model.isUserLogged = req.isAuthenticated();
         }
         res.render('home', model);
@@ -37,18 +39,19 @@ const init = (app, data) => {
             isUserLogged: false,
             messages: req.flash('error'),
         };
-        // console.log(model.foods[0]);
 
         if (req.user) {
             const orders = await data.order.findOrderByUserId(req.user.id);
             await Promise.all(
                 orders.map(async (order) => {
-                    const details = await data.orderDetails.findByOrderId(order.id);
+                    const details = await data.orderDetails
+                        .findByOrderId(order.id);
                     order.details = details;
                 }));
 
             model.orders = orders;
-            model.username = req.user.name.charAt(0).toUpperCase() + req.user.name.slice(1) + '\'s orders';
+            model.username = req.user.name.charAt(0).toUpperCase() +
+                req.user.name.slice(1) + '\'s orders';
             model.isUserLogged = req.isAuthenticated();
         }
         res.render('contacts', model);
@@ -80,18 +83,19 @@ const init = (app, data) => {
             messages: req.flash('error'),
             feedbackSent: false,
         };
-        // console.log(model.foods[0]);
 
         if (req.user) {
             const orders = await data.order.findOrderByUserId(req.user.id);
             await Promise.all(
                 orders.map(async (order) => {
-                    const details = await data.orderDetails.findByOrderId(order.id);
+                    const details = await data.orderDetails
+                        .findByOrderId(order.id);
                     order.details = details;
                 }));
 
             model.orders = orders;
-            model.username = req.user.name.charAt(0).toUpperCase() + req.user.name.slice(1) + '\'s orders';
+            model.username = req.user.name.charAt(0).toUpperCase() +
+                req.user.name.slice(1) + '\'s orders';
             model.isUserLogged = req.isAuthenticated();
         }
 

@@ -1,7 +1,7 @@
 const {
     expect,
 } = require('chai');
-const sinon = require('sinon');
+require('sinon');
 
 const {
     init,
@@ -24,7 +24,7 @@ describe('Test init() method of app/config/express.js', () => {
         };
         const targetFunction = () => {
             init(validApp);
-        };;
+        };
 
         expect(targetFunction).to.not.throw;
     });

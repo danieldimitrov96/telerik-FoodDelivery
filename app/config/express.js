@@ -27,7 +27,7 @@ const init = (app) => {
     app.use('/static', express.static(path.join(__dirname, '../../public')));
 
     // decorator
-    // app.use(morgan('combined'));
+    app.use(morgan('combined'));
 
     app.use(flash());
 

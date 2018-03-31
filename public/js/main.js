@@ -1,12 +1,19 @@
 $(document).ready(function () {
     const orderDetailsSuccess = (response) => {
-        // console.log('checkout success');
-        alert('checkout success');
+        bootbox.alert({
+            message: 'Your order was recieved!',
+            buttons: {
+                'ok': {
+                    className: 'btn-orage'
+                }
+            }
+        })
         $("#basket").empty();
         localStorage.clear();
         $('#cart .badge').first().html(0);
         $('#basketContainer .badge').first().html(0);
         $('#total').html(0);
+
         // localStorage.setItem('basket', JSON.stringify([]));
         // localStorage.setItem('basketTotal', JSON.stringify({
         //     totalQuantity: +0,
@@ -16,14 +23,55 @@ $(document).ready(function () {
     }
 
     const orderDetailsError = (error) => {
-        alert("Network error, try again");
+        if ($('#userOrders').length === 0) {
+            bootbox.alert({
+                message: 'Please, log in first.',
+                buttons: {
+                    'ok': {
+                        className: 'btn-orage'
+                    }
+                }
+            })
+        } else {
+            bootbox.alert({
+                message: 'Check your internet connection.',
+                buttons: {
+                    'ok': {
+                        className: 'btn-orage'
+                    }
+                }
+            })
+        }
+
     }
 
     const sendOrderDetails = () => {
         const data = JSON.parse(localStorage.getItem('basket'));
-        if (!data.length || data.length === 0) {
+        if (localStorage.length === 0) {
+
+            bootbox.alert({
+                message: 'Please add at least one item in the cart.',
+                buttons: {
+                    'ok': {
+                        className: 'btn-orage'
+                    }
+                }
+            })
             return;
+        } else if (!data.length || data.length === 0) {
+            bootbox.alert({
+                message: 'Please add at least one item in the cart.',
+                buttons: {
+                    'ok': {
+                        className: 'btn-orage'
+                    }
+                }
+            })
+            return;
+
         }
+
+
 
         $.post({
                 method: 'POST',
@@ -227,22 +275,4 @@ $(document).ready(function () {
             $('#myAccaunt').click();
         }
     }
-    
-    $(document).mouseup(function (e) {
-        var container = $(".shopping-cart");
-
-        // if the target of the click isn't the container nor a descendant of the container
-        if (!container.is(e.target) && container.has(e.target).length === 0) {
-            container.hide(400);
-        }
-    });
-
-    $(document).mouseup(function (e) {
-        var container = $(".checkout");
-
-        // if the target of the click isn't the container nor a descendant of the container
-        if (!container.is(e.target) && container.has(e.target).length === 0) {
-            container.hide(400);
-        }
-    });
 });

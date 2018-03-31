@@ -1,3 +1,4 @@
+/* eslint new-cap: [, { "capIsNewExceptions": ["Order"] }] */
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const Order = sequelize.define('Order', {

@@ -1,3 +1,4 @@
+/* eslint new-cap: [, { "capIsNewExceptions": ["Feedback"] }] */
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const Feedback = sequelize.define('Feedback', {

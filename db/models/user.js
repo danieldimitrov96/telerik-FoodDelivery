@@ -1,3 +1,4 @@
+/* eslint new-cap: [, { "capIsNewExceptions": ["User"] }] */
 'use strict';
 const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {

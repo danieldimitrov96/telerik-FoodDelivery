@@ -1,3 +1,7 @@
-.migrations
+migrations
+js/vendor
+node_modules
+public
 index.js
+bootsrtap.js
 .eslintrc
