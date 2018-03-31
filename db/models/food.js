@@ -1,3 +1,4 @@
+/* eslint new-cap: [, { "capIsNewExceptions": ["Food"] }] */
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Food = sequelize.define('Food', {

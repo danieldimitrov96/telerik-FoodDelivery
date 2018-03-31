@@ -17,13 +17,14 @@ describe('Test class UserData extends Data', () => {
     });
 
     describe('Instance test', () => {
-        it("should be UserData instance ", () => {
-            expect(fakeUser instanceof UserData).to.equal(true, "Should be instance of UserData");
+        it('should be UserData instance ', () => {
+            expect(fakeUser instanceof UserData)
+                .to.equal(true, 'Should be instance of UserData');
         });
     });
 
     describe('Test findByUsername() method', () => {
-        it("should return object when valid username passed", async () => {
+        it('should return object when valid username passed', async () => {
             const validUsername = 'Jeko';
             const expectedUserObj = {
                 name: 'Jeko',
@@ -46,7 +47,7 @@ describe('Test class UserData extends Data', () => {
     });
 
     describe('Test findByPhone() method', () => {
-        it("should return object when valid phone number passed", async () => {
+        it('should return object when valid phone number passed', async () => {
             const validPhone = '88213';
             const expectedUserObj = {
                 name: 'Jeko',

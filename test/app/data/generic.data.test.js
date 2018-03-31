@@ -19,8 +19,9 @@ describe('Test class Data of generic.data.js', () => {
     });
 
     describe('Instance test', () => {
-        it("should be Data instance ", () => {
-            expect(data instanceof Data).to.equal(true, "Should be instance of class Data");
+        it('should be Data instance ', () => {
+            expect(data instanceof Data)
+                .to.equal(true, 'Should be instance of class Data');
         });
     });
 
@@ -35,16 +36,17 @@ describe('Test class Data of generic.data.js', () => {
             expect(actualModelsArr).deep.equal(expectedModelsArr);
         });
 
-        it('should return empty array deeply equal of FakeModels array', async () => {
-            const expectedModelsArr = [];
-            sinon.stub(FakeModel, 'findAll')
-                .returns([]);
+        it('should return empty array deeply equal of FakeModels array',
+            async () => {
+                const expectedModelsArr = [];
+                sinon.stub(FakeModel, 'findAll')
+                    .returns([]);
 
-            const actualModelsArr = await data.getAll();
+                const actualModelsArr = await data.getAll();
 
-            expect(actualModelsArr).deep.equal(expectedModelsArr);
-            expect(actualModelsArr).to.be.empty;
-        });
+                expect(actualModelsArr).deep.equal(expectedModelsArr);
+                expect(actualModelsArr).to.be.empty;
+            });
     });
 
     describe('Test getById(id) method', () => {
@@ -52,7 +54,7 @@ describe('Test class Data of generic.data.js', () => {
             const id = 3;
             const expectedObject = {
                 id,
-            }
+            };
             sinon.stub(FakeModel, 'findById')
                 .returns(expectedObject);
 
@@ -75,28 +77,30 @@ describe('Test class Data of generic.data.js', () => {
 
     describe('Test create(obj) method', () => {
         it('should throw when invalid object passed', async () => {
-            const obj = {}
-            FakeModel.create = (obj) => {throw new Error };
+            FakeModel.create = (obj) => {
+                throw new Error;
+            };
             const actualReturn = await FakeModel.create;
 
             expect(actualReturn).to.throw();
         });
 
         it('should NOT throw when valid object passed', async () => {
-            const obj = {};
-            const actualReturn = await data.create(obj);
+            const obj1 = {};
+            const actualReturn = await data.create(obj1);
 
             expect(actualReturn).to.not.throw;
         });
 
         it('should return object when valid object passed', async () => {
-            const obj = {};
+            const obj1 = {};
             const resultObj = {};
             sinon.stub(FakeModel, 'create')
                 .returns(resultObj);
-            const actualReturn = await data.create(obj);
 
-            expect(resultObj).to.not.null;
+           await data.create(obj1);
+
+           expect(resultObj).to.not.null;
         });
     });
 });

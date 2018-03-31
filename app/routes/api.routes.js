@@ -1,7 +1,5 @@
-/* globals __dirname __filename */
-
-const fs = require('fs');
-const path = require('path');
+require('fs');
+require('path');
 
 const init = (app, data) => {
     app.get('/api/foods', async (req, res) => {

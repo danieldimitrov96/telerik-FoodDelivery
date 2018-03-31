@@ -17,18 +17,19 @@ describe('Test class OrderDetailsData extends Data', () => {
     });
 
     describe('Instance test', () => {
-        it("should be OrderDetailsData instance ", () => {
-            expect(orderDetailsData instanceof OrderDetailsData).to.equal(true, "Should be instance of OrderDetailsData");
+        it('should be OrderDetailsData instance ', () => {
+            expect(orderDetailsData instanceof OrderDetailsData)
+                .to.equal(true, 'Should be instance of OrderDetailsData');
         });
     });
 
     describe('Test findByOrderId() method', () => {
-        it("should return object when valid id passed", () => {
+        it('should return object when valid id passed', () => {
             const validId = 5;
             sinon.stub(FakeOrderDetailsModel, 'findAll')
                 .returns({});
             const actualResult = orderDetailsData.findByOrderId(validId);
-            expect(actualResult).to.not.null;
+            expect(actualResult).to.be.not.null;
         });
     });
 });

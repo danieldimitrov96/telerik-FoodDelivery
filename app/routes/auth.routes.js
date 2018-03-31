@@ -14,7 +14,6 @@ const init = (app, data) => {
     });
 
     app.post('/register', async (req, res) => {
-
         const userDB = await data.user.findByUsername(req.body.name);
         const phoneDBuser = await data.user.findByPhone(req.body.phone);
 
