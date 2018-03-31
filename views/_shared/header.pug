@@ -18,7 +18,7 @@ mixin header()
       script(src='/static/js/vendor/jquery.gmap3.min.js')
       script(src='/static/js/plugins.js')
       script(src='/static/js/main.js')
-      script(src='/static/js/allFoods.js')
+      //- script(src='/static/js/allFoods.js')
       script(src='/static/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js')
       script(src='/static/js/validate-forms.js')
     header
@@ -44,8 +44,8 @@ mixin header()
                   |  Cart
                   span.badge 0
       .row
-        .shopping-cart.col-xs-offset-9.pull-right(style='display:none')
-          .shopping-cart-header
+        #basketContainer.shopping-cart.col-xs-offset-9.pull-right(style='display:none')
+          #basketHeader.shopping-cart-header
             li.fa.fa-shopping-cart.cart-icon
             span.badge 
             .shopping-cart-total
@@ -93,10 +93,6 @@ mixin header()
           button.button#checkoutBtn.btn-warning(href='#') Checkout
 
         //- end shopping-cart
-
-
-
-
         .row
         .checkout.col-xs-10(style='display:none')
           .checkout-header
@@ -121,10 +117,6 @@ mixin header()
                             |Quantity: #{orderDetails.quantity}  
 
         //- end checkout
-
-
-
-
       #main-header
         .container
           .row

@@ -70,7 +70,7 @@ const init = (app, data) => {
                 });
             });
 
-            res.send("Checkout button clicked Ser and userId is ");
+            res.send(JSON.stringify('Checkout accepted'));
         }
     });
 
