@@ -58,7 +58,6 @@ const init = (app, data) => {
         if (!req.user) {
             res.send('You must log in');
         } else {
-            console.log(req.body);
             const orderRecord = await data.order.create({
                 UserId: req.user.id,
             });

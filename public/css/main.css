@@ -200,13 +200,16 @@ a {
 }
 
 .checkout {
+  overflow-y: scroll; 
+  height:400px;
   margin: 20px 20px;
   float: right;
   background: white;
   width: 320px;
   padding: 20px;
   border: 2px solid #545454;
-  border-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
   .checkout-header {
     border-bottom: 1px solid #E8E8E8;
     padding-bottom: 15px;

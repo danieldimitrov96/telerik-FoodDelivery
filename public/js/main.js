@@ -1,11 +1,12 @@
 $(document).ready(function () {
     const orderDetailsSuccess = (response) => {
-        console.log('checkout success');
+        // console.log('checkout success');
         alert('checkout success');
-        // localStorage.setItem('basket', JSON.stringify([]));
         $("#basket").empty();
+        localStorage.clear();
         $('#cart .badge').first().html(0);
         $('#basketContainer .badge').first().html(0);
+        $('#total').html(0);
     }
 
     const orderDetailsError = (error) => {
@@ -15,7 +16,6 @@ $(document).ready(function () {
     const sendOrderDetails = () => {
         const data = JSON.parse(localStorage.getItem('basket'));
         if (!data.length || data.length === 0) {
-            console.log('localStorage basket is empty');
             return;
         }
 
@@ -35,15 +35,19 @@ $(document).ready(function () {
     });
 
     $("#cart").on("click", function () {
-        $(".checkout").hide("slow");
-        $(".shopping-cart").fadeToggle("fast");
-        $('.close').click();
+        if ($(".shopping-cart").is(':hidden')) {
+            $(".checkout").hide("fast");
+            $(".shopping-cart").show("fast");
+            $('.close').click();
+        }
     });
 
     $("#userOrders").on("click", function () {
-        $(".shopping-cart").hide("slow");
-        $(".checkout").fadeToggle("fast");
-        $('.close').click();
+        if ($(".checkout").is(':hidden')) {
+            $(".shopping-cart").hide("slow");
+            $(".checkout").show("fast");
+            $('.close').click();
+        }
     });
 
     $('#myAccaunt').on('click', () => {
@@ -51,9 +55,29 @@ $(document).ready(function () {
     })
 
     $("#checkoutBtn").on("click", function () {
-        console.log('checkot button clicked');
         sendOrderDetails();
     });
+
+    $(document).mouseup(function (e) {
+        let container = $(".shopping-cart");
+        let container2 = $('.portfolio-wrapper');
+
+        if (!container.is(e.target) &&
+            container.has(e.target).length === 0 &&
+            !container2.is(e.target) &&
+            container2.has(e.target).length === 0
+        ) {
+            container.hide(400);
+        }
+    });
+
+    $(document).mouseup(function (e) {
+        let container = $(".checkout");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.hide(400);
+        }
+    });
+
 
     // add to basket process:
     const takeOutFromBasket = (event) => {
@@ -86,7 +110,7 @@ $(document).ready(function () {
 
     const updateBasket = () => {
         if (!localStorage.getItem('basketTotal')) {
-            console.log('There is no basketTotal info');
+            // console.log('There is no basketTotal info');
             return;
         }
         const basketTotalObj = JSON.parse(localStorage.getItem('basketTotal'));
@@ -97,17 +121,17 @@ $(document).ready(function () {
         $('#basketHeader span').last().html('$ ' + totalSum);
 
         if (!localStorage.getItem('basket')) {
-            console.log('empty current basket');
+            // console.log('empty current basket');
             return;
         }
         const currentBasketArr = JSON.parse(localStorage.getItem('basket'));
-        console.log(currentBasketArr);
+        // console.log(currentBasketArr);
         const $basket = $('#basket');
         $basket.empty();
 
         currentBasketArr.forEach((obj) => {
             const template = foodItemTemplate(obj);
-            console.log(obj);
+            // console.log(obj);
             $basket.append(template);
         });
     }
@@ -134,6 +158,11 @@ $(document).ready(function () {
     }
 
     const addFoodToBasket = (event) => {
+        setTimeout(function () {
+            $('.fancybox-skin').slideUp(400);
+            $('.fancybox-close').click();
+        }, 1000);
+
         const $parent = $(event.currentTarget).closest('.portfolio-wrapper');
 
         const foodId = $parent.data('foodid');
@@ -162,8 +191,8 @@ $(document).ready(function () {
         }
 
         if (!basketTotalObj['totalQuantity'] || !basketTotalObj['totalSum']) {
-            console.log('innn');
-            console.log(basketTotalObj);
+            // console.log('innn');
+            // console.log(basketTotalObj);
             basketTotalObj['totalQuantity'] = +0;
             basketTotalObj['totalSum'] = +0;
         }
