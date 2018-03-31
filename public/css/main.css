@@ -192,7 +192,7 @@ nav {
 
 .btn-warning {
   color: black !important;
-  width:100%; 
+  width: 100%;
 }
 
 a {
@@ -200,8 +200,8 @@ a {
 }
 
 .checkout {
-  overflow-y: scroll; 
-  height:400px;
+  overflow-y: scroll;
+  height: 400px;
   margin: 20px 20px;
   float: right;
   background: white;
@@ -258,24 +258,29 @@ a {
   font-weight: bold;
 }
 
-.cartOrderImages{
+.cartOrderImages {
   height: 5em;
   width: 5em;
 }
 
-.feedbackRecieved{
-  color:green;
-  font-size:18px;
+.feedbackRecieved {
+  color: green;
+  font-size: 18px;
   display: inline-block;
   float: right;
   font-weight: bold;
 }
 
-.bold{
+.bold {
   font-weight: bold;
-  font-size:16px;
+  font-size: 16px;
 }
 
-.text-item{
+.text-item {
   font-weight: bold;
+}
+
+.btn-orage {
+  color: #363636;
+   background-color: orange;
 }
