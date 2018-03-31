@@ -2,10 +2,12 @@ $(document).ready(function () {
     const orderDetailsSuccess = (response) => {
         console.log('checkout success');
         alert('checkout success');
-        // localStorage.setItem('basket', JSON.stringify([]));
-        $("#basket").empty();
-        $('#cart .badge').first().html(0);
-        $('#basketContainer .badge').first().html(0);
+        localStorage.setItem('basket', JSON.stringify([]));
+        localStorage.setItem('basketTotal', JSON.stringify({
+            totalQuantity: +0,
+            totalSum: +0,
+        }));
+        updateBasket();
     }
 
     const orderDetailsError = (error) => {
@@ -101,13 +103,11 @@ $(document).ready(function () {
             return;
         }
         const currentBasketArr = JSON.parse(localStorage.getItem('basket'));
-        console.log(currentBasketArr);
         const $basket = $('#basket');
         $basket.empty();
 
         currentBasketArr.forEach((obj) => {
             const template = foodItemTemplate(obj);
-            console.log(obj);
             $basket.append(template);
         });
     }
@@ -162,8 +162,6 @@ $(document).ready(function () {
         }
 
         if (!basketTotalObj['totalQuantity'] || !basketTotalObj['totalSum']) {
-            console.log('innn');
-            console.log(basketTotalObj);
             basketTotalObj['totalQuantity'] = +0;
             basketTotalObj['totalSum'] = +0;
         }
@@ -196,4 +194,22 @@ $(document).ready(function () {
             $('#myAccaunt').click();
         }
     }
+    
+    $(document).mouseup(function (e) {
+        var container = $(".shopping-cart");
+
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.hide(400);
+        }
+    });
+
+    $(document).mouseup(function (e) {
+        var container = $(".checkout");
+
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.hide(400);
+        }
+    });
 });
