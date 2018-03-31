@@ -16,8 +16,14 @@ const {
 const init = (app, data) => {
     passport.use(new Strategy(async (name, password, done) => {
         const user = await data.user.findByUsername(name);
-       const isPassMatch = await user.comparePassword(password);
-        if (!user || !isPassMatch) {
+        if (user) {
+            const isPassMatch = await user.comparePassword(password);
+            if (!isPassMatch) {
+                return done(null, false, {
+                    message: 'Incorrect username or password.',
+                });
+            }
+        } else {
             return done(null, false, {
                 message: 'Incorrect username or password.',
             });
