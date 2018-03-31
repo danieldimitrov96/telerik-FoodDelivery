@@ -1,14 +1,14 @@
-$(document).ready(function () {
+$(document).ready(() => {
     const orderDetailsSuccess = (response) => {
         bootbox.alert({
             message: 'Your order was recieved!',
             buttons: {
                 'ok': {
-                    className: 'btn-orage'
+                    className: 'btn-orage',
                 }
             }
         })
-        $("#basket").empty();
+        $('#basket').empty();
         localStorage.clear();
         $('#cart .badge').first().html(0);
         $('#basketContainer .badge').first().html(0);
@@ -20,7 +20,7 @@ $(document).ready(function () {
         //     totalSum: +0,
         // }));
         // updateBasket();
-    }
+    };
 
     const orderDetailsError = (error) => {
         if ($('#userOrders').length === 0) {
@@ -42,8 +42,7 @@ $(document).ready(function () {
                 }
             })
         }
-
-    }
+    };
 
     const sendOrderDetails = () => {
         const data = JSON.parse(localStorage.getItem('basket'));
@@ -77,15 +76,15 @@ $(document).ready(function () {
                 method: 'POST',
                 url: '/checkout',
                 data: JSON.stringify(data),
-                contentType: "application/json",
-                dataType: 'json'
+                contentType: 'application/json',
+                dataType: 'json',
             })
             .then(orderDetailsSuccess)
             .catch(orderDetailsError);
     }
 
     $(' .shopping-cart-items').css({
-        'padding-left': '0'
+        'padding-left': '0',
     });
 
     $("#cart").on("click", function () {
@@ -139,20 +138,20 @@ $(document).ready(function () {
         const foodId = $li.data('inbasket');
 
         const basketArr = JSON.parse(localStorage.getItem('basket'));
-        const foodObjIndex = basketArr.findIndex((obj) => obj['foodId'] === foodId);
+        const foodObjIndex = basketArr.findIndex((obj) => obj.foodId === foodId);
         const foodObj = basketArr[foodObjIndex];
         const basketTotalObj = JSON.parse(localStorage.getItem('basketTotal'));
 
         if (!foodObj) {
             return;
-        } else if (foodObj['quantity'] > 1) {
-            foodObj['quantity'] -= 1;
-            foodObj['sum'] -= Number(foodObj['price']);
-            basketTotalObj['totalQuantity'] -= 1;
-            basketTotalObj['totalSum'] -= Number(foodObj['price']);
+        } else if (foodObj.quantity > 1) {
+            foodObj.quantity -= 1;
+            foodObj.sum -= Number(foodObj.price);
+            basketTotalObj.totalQuantity -= 1;
+            basketTotalObj.totalSum -= Number(foodObj.price);
         } else {
-            basketTotalObj['totalQuantity'] -= 1;
-            basketTotalObj['totalSum'] -= Number(foodObj['price']);
+            basketTotalObj.totalQuantity -= 1;
+            basketTotalObj.totalSum -= Number(foodObj.price);
             basketArr.splice(foodObjIndex, 1);
         }
 
@@ -168,8 +167,8 @@ $(document).ready(function () {
             return;
         }
         const basketTotalObj = JSON.parse(localStorage.getItem('basketTotal'));
-        const totalQuantity = basketTotalObj['totalQuantity'];
-        const totalSum = basketTotalObj['totalSum'];
+        const totalQuantity = basketTotalObj.totalQuantity;
+        const totalSum = basketTotalObj.totalSum;
         $('#cart span').first().html(totalQuantity);
         $('#basketHeader span').first().html(totalQuantity);
         $('#basketHeader span').last().html('$ ' + totalSum);
@@ -186,28 +185,31 @@ $(document).ready(function () {
             const template = foodItemTemplate(obj);
             $basket.append(template);
         });
-    }
+    };
 
     const foodItemTemplate = (obj) => {
-        const foodId = obj['foodId'];
-        const foodName = obj['foodName'];
-        const foodImgUrl = obj['foodImgUrl'];
-        const quantity = obj['quantity'];
-        const price = obj['price'];
-        const sum = obj['sum'];
+        const foodId = obj.foodId;
+        const foodName = obj.foodName;
+        const foodImgUrl = obj.foodImgUrl;
+        const quantity = obj.quantity;
+        const price = obj.price;
+        const sum = obj.sum;
 
         const btn = $('<button>').addClass('btn btn-primary btn-danger btn-xs')
             .attr('type', 'button').html('Remove');
         $(btn).on('click', takeOutFromBasket);
 
-        return itemTemplate = $('<li>').addClass('clearfix list-group-item').attr('data-inbasket', foodId)
+        const itemTemplate = $('<li>').addClass('clearfix list-group-item')
+            .attr('data-inbasket', foodId)
             .append($(`<img src=${foodImgUrl}>`).addClass('cartOrderImages'))
             .append($(`<span>${foodName}</span>`).addClass('item-name'))
             .append($(`<div> Price: ${price}</div>`).append($('<span>').addClass('item-price')))
             .append($('<div>').append($(`<span> Quantity: ${quantity}</span>`).addClass('item-quantity')))
             .append($('<div>').append($(`<span>Sum: ${sum}</span>`).addClass('item-total')))
             .append($(btn));
-    }
+
+        return itemTemplate;
+    };
 
     const addFoodToBasket = (event) => {
         setTimeout(function () {
@@ -224,13 +226,13 @@ $(document).ready(function () {
         const priceAsNr = parseFloat(price.substring(2).trim());
         const quantity = +1;
 
-        const basketArr = JSON.parse(localStorage['basket'] || "[]");
-        const basketTotalObj = JSON.parse(localStorage['basketTotal'] || "{}");
-        const foodObj = basketArr.find((obj) => obj['foodId'] === foodId);
+        const basketArr = JSON.parse(localStorage.basket || '[]');
+        const basketTotalObj = JSON.parse(localStorage.basketTotal || '{}');
+        const foodObj = basketArr.find((obj) => obj.foodId === foodId);
 
         if (foodObj) {
-            foodObj['quantity'] += 1;
-            foodObj['sum'] += priceAsNr;
+            foodObj.quantity += 1;
+            foodObj.sum += priceAsNr;
         } else {
             basketArr.push({
                 foodId: foodId,
@@ -242,20 +244,20 @@ $(document).ready(function () {
             });
         }
 
-        if (!basketTotalObj['totalQuantity'] || !basketTotalObj['totalSum']) {
-            basketTotalObj['totalQuantity'] = +0;
-            basketTotalObj['totalSum'] = +0;
+        if (!basketTotalObj.totalQuantity || !basketTotalObj.totalSum) {
+            basketTotalObj.totalQuantity = +0;
+            basketTotalObj.totalSum = +0;
         }
-        basketTotalObj['totalQuantity'] += 1;
-        basketTotalObj['totalSum'] += priceAsNr;
+        basketTotalObj.totalQuantity += 1;
+        basketTotalObj.totalSum += priceAsNr;
 
         localStorage.setItem('basket', JSON.stringify(basketArr));
         localStorage.setItem('basketTotal', JSON.stringify(basketTotalObj));
 
         updateBasket();
-    }
+    };
 
-    $('[data-foodid]').toArray().forEach(foodItem => {
+    $('[data-foodid]').toArray().forEach((foodItem) => {
         $(foodItem).on('click', 'a:first', addFoodToBasket);
     });
 
@@ -264,9 +266,9 @@ $(document).ready(function () {
     // Instantiate MixItUp:
     $('#Container').mixItUp();
 
-    $(".fancybox").fancybox();
+    $('.fancybox').fancybox();
 
-    var error = $('.input-error').html();
+    const error = $('.input-error').html();
     if (error) {
         if (error.includes('already taken')) {
             $('#myAccaunt').click();
