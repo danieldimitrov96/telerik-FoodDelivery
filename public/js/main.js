@@ -48,6 +48,14 @@ $(document).ready(function () {
     const sendOrderDetails = () => {
         const data = JSON.parse(localStorage.getItem('basket'));
         if (!data.length || data.length === 0) {
+            bootbox.alert({
+                message: 'Please add at least one item in the cart.',
+                buttons: {
+                    'ok': {
+                        className: 'btn-orage'
+                    }
+                }
+            })
             return;
         }
 
@@ -188,7 +196,6 @@ $(document).ready(function () {
     }
 
     const addFoodToBasket = (event) => {
-
         setTimeout(function () {
             $('.fancybox-skin').slideUp(400);
             $('.fancybox-close').click();
