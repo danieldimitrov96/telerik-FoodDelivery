@@ -9,7 +9,7 @@ const init = (app, data) => {
         const categories = await data.category.getAll();
 
         const model = {
-            username: 'My accaunt',
+            username: 'My accоunt',
             isUserLogged: false,
             messages: req.flash('error'),
             foods: foods,
@@ -35,7 +35,7 @@ const init = (app, data) => {
 
     app.get('/contacts', async (req, res) => {
         const model = {
-            username: 'My accaunt',
+            username: 'My accоunt',
             isUserLogged: false,
             messages: req.flash('error'),
         };
@@ -78,7 +78,7 @@ const init = (app, data) => {
 
     app.post('/feedback', async (req, res) => {
         const model = {
-            username: 'My accaunt',
+            username: 'My accоunt',
             isUserLogged: false,
             messages: req.flash('error'),
             feedbackSent: false,
