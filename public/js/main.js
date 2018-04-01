@@ -1,70 +1,25 @@
 $(document).ready(() => {
     const orderDetailsSuccess = (response) => {
-        bootbox.alert({
-            message: 'Your order was recieved!',
-            buttons: {
-                'ok': {
-                    className: 'btn-orage',
-                },
-            },
-        });
-        $('#basket').empty();
+        helpers.bootboxMsg('Your order was recieved!');
         localStorage.clear();
-        $('#cart .badge').first().html(0);
-        $('#basketContainer .badge').first().html(0);
-        $('#total').html(0);
-
-        // localStorage.setItem('basket', JSON.stringify([]));
-        // localStorage.setItem('basketTotal', JSON.stringify({
-        //     totalQuantity: +0,
-        //     totalSum: +0,
-        // }));
-        // updateBasket();
+        basket.updateBasket();
     };
 
     const orderDetailsError = (error) => {
         if ($('#userOrders').length === 0) {
-            bootbox.alert({
-                message: 'Please, log in first.',
-                buttons: {
-                    'ok': {
-                        className: 'btn-orage',
-                    },
-                },
-            });
+            helpers.bootboxMsg('Please, log in first.');
         } else {
-            bootbox.alert({
-                message: 'Check your internet connection.',
-                buttons: {
-                    'ok': {
-                        className: 'btn-orage',
-                    },
-                },
-            });
+            helpers.bootboxMsg('Check your internet connection.');
         }
     };
 
     const sendOrderDetails = () => {
         const data = JSON.parse(localStorage.getItem('basket'));
         if (localStorage.length === 0) {
-            bootbox.alert({
-                message: 'Please add at least one item in the cart.',
-                buttons: {
-                    'ok': {
-                        className: 'btn-orage',
-                    },
-                },
-            });
+            helpers.bootboxMsg('Please add at least one item in the cart.');
             return;
         } else if (!data.length || data.length === 0) {
-            bootbox.alert({
-                message: 'Please add at least one item in the cart.',
-                buttons: {
-                    'ok': {
-                        className: 'btn-orage',
-                    },
-                },
-            });
+            helpers.bootboxMsg('Please add at least one item in the cart.');
             return;
         }
 
@@ -129,7 +84,7 @@ $(document).ready(() => {
 
     // basket functionality:
     $('[data-foodid]').toArray().forEach((foodItem) => {
-        $(foodItem).on('click', 'a:first', (event)=>{
+        $(foodItem).on('click', 'a:first', (event) => {
             basket.addFoodToBasket(event);
             basket.updateBasket();
         });
@@ -138,7 +93,6 @@ $(document).ready(() => {
 
     // Instantiate MixItUp:
     $('#Container').mixItUp();
-
     $('.fancybox').fancybox();
 
     const error = $('.input-error').html();
