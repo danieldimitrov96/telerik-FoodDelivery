@@ -4,7 +4,8 @@ const basket = {
         const foodId = $li.data('inbasket');
 
         const basketArr = JSON.parse(localStorage.getItem('basket'));
-        const foodObjIndex = basketArr.findIndex((obj) => obj.foodId === foodId);
+        const foodObjIndex = basketArr
+                .findIndex((obj) => obj.foodId === foodId);
         const foodObj = basketArr[foodObjIndex];
         const basketTotalObj = JSON.parse(localStorage.getItem('basketTotal'));
 
