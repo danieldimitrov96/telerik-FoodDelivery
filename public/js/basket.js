@@ -1,10 +1,60 @@
-const basket = {
-    takeOutFromBasket: (event) => {
+const basket = (function() {
+    const updateBasket = () => {
+        if (!localStorage.getItem('basketTotal')) {
+            return;
+        }
+        const basketTotalObj = JSON.parse(localStorage.getItem('basketTotal'));
+        const totalQuantity = basketTotalObj.totalQuantity;
+        const totalSum = basketTotalObj.totalSum;
+        $('#cart span').first().html(totalQuantity);
+        $('#basketHeader span').first().html(totalQuantity);
+        $('#basketHeader span').last().html('$ ' + totalSum);
+
+        if (!localStorage.getItem('basket')) {
+            return;
+        }
+        const currentBasketArr = JSON.parse(localStorage.getItem('basket'));
+        const $basket = $('#basket');
+        $basket.empty();
+
+        currentBasketArr.forEach((obj) => {
+            const template = foodItemTemplate(obj);
+            $basket.append(template);
+        });
+    };
+
+    const foodItemTemplate = (obj) => {
+        const foodId = obj.foodId;
+        const foodName = obj.foodName;
+        const foodImgUrl = obj.foodImgUrl;
+        const quantity = obj.quantity;
+        const price = obj.price;
+        const sum = obj.sum;
+
+        const btn = $('<button>').addClass('btn btn-primary btn-danger btn-xs')
+            .attr('type', 'button').html('Remove');
+        $(btn).on('click', takeOutFromBasket);
+
+        return $('<li>').addClass('clearfix list-group-item')
+            .attr('data-inbasket', foodId)
+            .append($(`<img src=${foodImgUrl}>`).addClass('cartOrderImages'))
+            .append($(`<span>${foodName}</span>`).addClass('item-name'))
+            .append($(`<div> Price: ${price}</div>`).append($('<span>')
+                .addClass('item-price')))
+            .append($('<div>').append($(`<span> Quantity: ${quantity}</span>`)
+                .addClass('item-quantity')))
+            .append($('<div>').append($(`<span>Sum: ${sum}</span>`)
+                .addClass('item-total')))
+            .append($(btn));
+    };
+
+    const takeOutFromBasket = (event) => {
         const $li = $(event.currentTarget).closest('li');
         const foodId = $li.data('inbasket');
 
         const basketArr = JSON.parse(localStorage.getItem('basket'));
-        const foodObjIndex = basketArr.findIndex((obj) => obj.foodId === foodId);
+        const foodObjIndex = basketArr.findIndex((obj) =>
+            obj.foodId === foodId);
         const foodObj = basketArr[foodObjIndex];
         const basketTotalObj = JSON.parse(localStorage.getItem('basketTotal'));
 
@@ -25,58 +75,9 @@ const basket = {
         localStorage.setItem('basketTotal', JSON.stringify(basketTotalObj));
 
         basket.updateBasket();
-    },
+    };
 
-    updateBasket: () => {
-        if (!localStorage.getItem('basketTotal')) {
-            return;
-        }
-        const basketTotalObj = JSON.parse(localStorage.getItem('basketTotal'));
-        const totalQuantity = basketTotalObj.totalQuantity;
-        const totalSum = basketTotalObj.totalSum;
-        $('#cart span').first().html(totalQuantity);
-        $('#basketHeader span').first().html(totalQuantity);
-        $('#basketHeader span').last().html('$ ' + totalSum);
-
-        if (!localStorage.getItem('basket')) {
-            return;
-        }
-        const currentBasketArr = JSON.parse(localStorage.getItem('basket'));
-        const $basket = $('#basket');
-        $basket.empty();
-
-        currentBasketArr.forEach((obj) => {
-            const template = basket.foodItemTemplate(obj);
-            $basket.append(template);
-        });
-    },
-
-    foodItemTemplate: (obj) => {
-        const foodId = obj.foodId;
-        const foodName = obj.foodName;
-        const foodImgUrl = obj.foodImgUrl;
-        const quantity = obj.quantity;
-        const price = obj.price;
-        const sum = obj.sum;
-
-        const btn = $('<button>').addClass('btn btn-primary btn-danger btn-xs')
-            .attr('type', 'button').html('Remove');
-        $(btn).on('click', basket.takeOutFromBasket);
-
-        return $('<li>').addClass('clearfix list-group-item')
-            .attr('data-inbasket', foodId)
-            .append($(`<img src=${foodImgUrl}>`).addClass('cartOrderImages'))
-            .append($(`<span>${foodName}</span>`).addClass('item-name'))
-            .append($(`<div> Price: ${price}</div>`).append($('<span>')
-                .addClass('item-price')))
-            .append($('<div>').append($(`<span> Quantity: ${quantity}</span>`)
-                .addClass('item-quantity')))
-            .append($('<div>').append($(`<span>Sum: ${sum}</span>`)
-                .addClass('item-total')))
-            .append($(btn));
-    },
-
-    addFoodToBasket: (event) => {
+    const addFoodToBasket = (event) => {
         setTimeout(() => {
             $('.fancybox-skin').slideUp(400);
             $('.fancybox-close').click();
@@ -119,6 +120,12 @@ const basket = {
         localStorage.setItem('basket', JSON.stringify(basketArr));
         localStorage.setItem('basketTotal', JSON.stringify(basketTotalObj));
 
-        basket.updateBasket();
-    },
-};
+        // basket.updateBasket();
+    };
+
+    return {
+        updateBasket,
+        addFoodToBasket,
+    };
+}());
+

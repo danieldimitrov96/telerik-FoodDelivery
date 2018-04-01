@@ -5,9 +5,9 @@ $(document).ready(() => {
             buttons: {
                 'ok': {
                     className: 'btn-orage',
-                }
-            }
-        })
+                },
+            },
+        });
         $('#basket').empty();
         localStorage.clear();
         $('#cart .badge').first().html(0);
@@ -28,49 +28,45 @@ $(document).ready(() => {
                 message: 'Please, log in first.',
                 buttons: {
                     'ok': {
-                        className: 'btn-orage'
-                    }
-                }
-            })
+                        className: 'btn-orage',
+                    },
+                },
+            });
         } else {
             bootbox.alert({
                 message: 'Check your internet connection.',
                 buttons: {
                     'ok': {
-                        className: 'btn-orage'
-                    }
-                }
-            })
+                        className: 'btn-orage',
+                    },
+                },
+            });
         }
     };
 
     const sendOrderDetails = () => {
         const data = JSON.parse(localStorage.getItem('basket'));
         if (localStorage.length === 0) {
-
             bootbox.alert({
                 message: 'Please add at least one item in the cart.',
                 buttons: {
                     'ok': {
-                        className: 'btn-orage'
-                    }
-                }
-            })
+                        className: 'btn-orage',
+                    },
+                },
+            });
             return;
         } else if (!data.length || data.length === 0) {
             bootbox.alert({
                 message: 'Please add at least one item in the cart.',
                 buttons: {
                     'ok': {
-                        className: 'btn-orage'
-                    }
-                }
-            })
+                        className: 'btn-orage',
+                    },
+                },
+            });
             return;
-
         }
-
-
 
         $.post({
                 method: 'POST',
@@ -81,7 +77,7 @@ $(document).ready(() => {
             })
             .then(orderDetailsSuccess)
             .catch(orderDetailsError);
-    }
+    };
 
     $(' .shopping-cart-items').css({
         'padding-left': '0',
@@ -131,10 +127,13 @@ $(document).ready(() => {
         }
     });
 
+    // basket functionality:
     $('[data-foodid]').toArray().forEach((foodItem) => {
-        $(foodItem).on('click', 'a:first', basket.addFoodToBasket);
+        $(foodItem).on('click', 'a:first', (event)=>{
+            basket.addFoodToBasket(event);
+            basket.updateBasket();
+        });
     });
-
     basket.updateBasket();
 
     // Instantiate MixItUp:
