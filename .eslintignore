@@ -1,7 +1,6 @@
 migrations
-js/vendor
+public/js/vendor
 node_modules
-public
 index.js
-bootsrtap.js
-.eslintrc
+bootstrap.js
+plugins.js
