@@ -117,6 +117,8 @@
         "afterEach": false,
         "before": false,
         "after": false,
-        "module": false
+        "module": false,
+        "helpers": false,
+        "basket": false
     }
 }

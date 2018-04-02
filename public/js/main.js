@@ -1,7 +1,11 @@
 $(document).ready(() => {
-    const orderDetailsSuccess = (response) => {
+    const orderDetailsSuccess = async (response) => {
         helpers.bootboxMsg('Your order was recieved!');
-        localStorage.clear();
+        localStorage.setItem('basket', JSON.stringify([]));
+        localStorage.setItem('basketTotal', JSON.stringify({
+            totalQuantity: +0,
+            totalSum: +0,
+        }));
         basket.updateBasket();
     };
 
@@ -13,7 +17,7 @@ $(document).ready(() => {
         }
     };
 
-    const sendOrderDetails = () => {
+    const sendOrderDetails = async () => {
         const data = JSON.parse(localStorage.getItem('basket'));
         if (localStorage.length === 0) {
             helpers.bootboxMsg('Please add at least one item in the cart.');
@@ -23,22 +27,28 @@ $(document).ready(() => {
             return;
         }
 
-        $.post({
+        let res;
+        try {
+            res = await $.post({
                 method: 'POST',
                 url: '/checkout',
                 data: JSON.stringify(data),
                 contentType: 'application/json',
                 dataType: 'json',
-            })
-            .then(orderDetailsSuccess)
-            .catch(orderDetailsError);
+            });
+            orderDetailsSuccess(res);
+        } catch (err) {
+            orderDetailsError(err);
+        }
+        // .then(orderDetailsSuccess)
+        //     .catch(orderDetailsError);
     };
 
     $(' .shopping-cart-items').css({
         'padding-left': '0',
     });
 
-    $('#cart').on('click', function() {
+    $('#cart').on('click', function () {
         if ($('.shopping-cart').is(':hidden')) {
             $('.checkout').hide('fast');
             $('.shopping-cart').show('fast');
@@ -46,7 +56,7 @@ $(document).ready(() => {
         }
     });
 
-    $('#userOrders').on('click', function() {
+    $('#userOrders').on('click', function () {
         if ($('.checkout').is(':hidden')) {
             $('.shopping-cart').hide('slow');
             $('.checkout').show('fast');
@@ -58,11 +68,11 @@ $(document).ready(() => {
         $('.shopping-cart').hide('fast');
     });
 
-    $('#checkoutBtn').on('click', function() {
+    $('#checkoutBtn').on('click', function () {
         sendOrderDetails();
     });
 
-    $(document).mouseup(function(e) {
+    $(document).mouseup(function (e) {
         const container = $('.shopping-cart');
         const container2 = $('.portfolio-wrapper');
 
@@ -75,7 +85,7 @@ $(document).ready(() => {
         }
     });
 
-    $(document).mouseup(function(e) {
+    $(document).mouseup(function (e) {
         const container = $('.checkout');
         if (!container.is(e.target) && container.has(e.target).length === 0) {
             container.hide(400);
