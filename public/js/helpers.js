@@ -1,4 +1,4 @@
-const helpers = (function(params) {
+const helpers = (function (params) {
     const bootboxMsg = (msg) => {
         bootbox.alert({
             message: msg,
@@ -14,3 +14,7 @@ const helpers = (function(params) {
         bootboxMsg,
     };
 }());
+
+module.exports = {
+    helpers,
+};

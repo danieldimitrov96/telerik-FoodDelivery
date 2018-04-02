@@ -129,3 +129,6 @@ const basket = (function() {
     };
 }());
 
+module.exports = {
+    basket,
+};
