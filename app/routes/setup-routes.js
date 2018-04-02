@@ -9,7 +9,7 @@ const init = (app, data) => {
         const categories = await data.category.getAll();
 
         const model = {
-            username: 'My accaunt',
+            username: 'My account',
             isUserLogged: false,
             messages: req.flash('error'),
             foods: foods,
@@ -35,7 +35,7 @@ const init = (app, data) => {
 
     app.get('/contacts', async (req, res) => {
         const model = {
-            username: 'My accaunt',
+            username: 'My account',
             isUserLogged: false,
             messages: req.flash('error'),
         };
@@ -61,15 +61,25 @@ const init = (app, data) => {
         if (!req.user) {
             res.send('You must log in');
         } else {
-            const orderRecord = await data.order.create({
-                UserId: req.user.id,
-            });
-            Array.from(req.body).forEach(async (obj) => {
-                await data.orderDetails.create({
-                    quantity: obj.quantity,
-                    OrderId: orderRecord.id,
-                    FoodId: obj.foodId,
+            let orderRecord;
+            try {
+                orderRecord = await data.order.create({
+                    UserId: req.user.id,
                 });
+            } catch (err) {
+                res.send('Invalid user id');
+            }
+
+            Array.from(req.body).forEach(async (obj) => {
+                try {
+                    await data.orderDetails.create({
+                        quantity: obj.quantity,
+                        OrderId: orderRecord.id,
+                        FoodId: obj.foodId,
+                    });
+                } catch (err) {
+                    res.send('Invalid order data');
+                }
             });
 
             res.send(JSON.stringify('Checkout accepted'));
@@ -78,7 +88,7 @@ const init = (app, data) => {
 
     app.post('/feedback', async (req, res) => {
         const model = {
-            username: 'My accaunt',
+            username: 'My account',
             isUserLogged: false,
             messages: req.flash('error'),
             feedbackSent: false,
