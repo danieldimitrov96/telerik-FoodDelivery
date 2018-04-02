@@ -1,3 +1,4 @@
+/* eslint no-unused-expressions: 0 */
 const {
     expect,
 } = require('chai');

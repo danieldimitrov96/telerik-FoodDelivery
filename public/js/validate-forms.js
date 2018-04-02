@@ -1,21 +1,20 @@
-$(document).ready(function () {
-
+$(document).ready(function() {
     $('#regForm').validate({
         rules: {
             name: {
                 required: true,
-                rangelength: [2, 15]
+                rangelength: [2, 15],
             },
             password: {
                 required: true,
-                rangelength: [2, 18]
+                rangelength: [2, 18],
             },
             phone: {
                 required: true,
                 rangelength: [2, 15],
-                digits: true
+                digits: true,
             },
-        }
+        },
     });
 
     $('#feedbackForm').validate({
@@ -35,19 +34,19 @@ $(document).ready(function () {
                 required: true,
                 rangelength: [1, 500],
             },
-        }
+        },
     });
 
     $('#logForm').validate({
         rules: {
             username: {
                 required: true,
-                rangelength: [2, 15]
+                rangelength: [2, 15],
             },
             password: {
                 required: true,
-                rangelength: [2, 13]
+                rangelength: [2, 13],
             },
-        }
+        },
     });
 });
