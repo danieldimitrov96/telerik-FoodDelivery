@@ -15,6 +15,7 @@ $(document).ready(() => {
         } else {
             helpers.bootboxMsg('Check your internet connection.');
         }
+        console.log(error);
     };
 
     const sendOrderDetails = async () => {
@@ -41,14 +42,14 @@ $(document).ready(() => {
             orderDetailsError(err);
         }
         // .then(orderDetailsSuccess)
-        //     .catch(orderDetailsError);
+        // .catch(orderDetailsError);
     };
 
     $(' .shopping-cart-items').css({
         'padding-left': '0',
     });
 
-    $('#cart').on('click', function () {
+    $('#cart').on('click', function() {
         if ($('.shopping-cart').is(':hidden')) {
             $('.checkout').hide('fast');
             $('.shopping-cart').show('fast');
@@ -56,7 +57,7 @@ $(document).ready(() => {
         }
     });
 
-    $('#userOrders').on('click', function () {
+    $('#userOrders').on('click', function() {
         if ($('.checkout').is(':hidden')) {
             $('.shopping-cart').hide('slow');
             $('.checkout').show('fast');
@@ -64,15 +65,15 @@ $(document).ready(() => {
         }
     });
 
-    $('#myAccaunt').on('click', () => {
+    $('#myAccount').on('click', () => {
         $('.shopping-cart').hide('fast');
     });
 
-    $('#checkoutBtn').on('click', function () {
+    $('#checkoutBtn').on('click', function() {
         sendOrderDetails();
     });
 
-    $(document).mouseup(function (e) {
+    $(document).mouseup(function(e) {
         const container = $('.shopping-cart');
         const container2 = $('.portfolio-wrapper');
 
@@ -85,7 +86,7 @@ $(document).ready(() => {
         }
     });
 
-    $(document).mouseup(function (e) {
+    $(document).mouseup(function(e) {
         const container = $('.checkout');
         if (!container.is(e.target) && container.has(e.target).length === 0) {
             container.hide(400);
@@ -108,10 +109,10 @@ $(document).ready(() => {
     const error = $('.input-error').html();
     if (error) {
         if (error.includes('already taken')) {
-            $('#myAccaunt').click();
+            $('#myAccount').click();
             $('#regTab').click();
         } else {
-            $('#myAccaunt').click();
+            $('#myAccount').click();
         }
     }
 });
