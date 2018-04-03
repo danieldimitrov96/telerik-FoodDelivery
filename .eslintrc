@@ -119,6 +119,7 @@
         "after": false,
         "module": false,
         "helpers": false,
-        "basket": false
+        "basket": false,
+        "bootbox": false
     }
 }
