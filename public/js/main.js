@@ -1,6 +1,17 @@
 $(document).ready(() => {
+    const bootboxMsg = (msg) => {
+        bootbox.alert({
+            message: msg,
+            buttons: {
+                'ok': {
+                    className: 'btn-orage',
+                },
+            },
+        });
+    };
+
     const orderDetailsSuccess = async (response) => {
-        helpers.bootboxMsg('Your order was recieved!');
+        bootboxMsg('Your order was recieved!');
         localStorage.setItem('basket', JSON.stringify([]));
         localStorage.setItem('basketTotal', JSON.stringify({
             totalQuantity: +0,
@@ -11,20 +22,19 @@ $(document).ready(() => {
 
     const orderDetailsError = (error) => {
         if ($('#userOrders').length === 0) {
-            helpers.bootboxMsg('Please, log in first.');
+            bootboxMsg('Please, log in first.');
         } else {
-            helpers.bootboxMsg('Check your internet connection.');
+            bootboxMsg('Check your internet connection.');
         }
-        console.log(error);
     };
 
     const sendOrderDetails = async () => {
         const data = JSON.parse(localStorage.getItem('basket'));
         if (localStorage.length === 0) {
-            helpers.bootboxMsg('Please add at least one item in the cart.');
+            bootboxMsg('Please add at least one item in the cart.');
             return;
         } else if (!data.length || data.length === 0) {
-            helpers.bootboxMsg('Please add at least one item in the cart.');
+            bootboxMsg('Please add at least one item in the cart.');
             return;
         }
 

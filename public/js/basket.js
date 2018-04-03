@@ -128,7 +128,3 @@ const basket = (function() {
         addFoodToBasket,
     };
 }());
-
-module.exports = {
-    basket,
-};
