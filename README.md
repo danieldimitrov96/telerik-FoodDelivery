@@ -6,6 +6,8 @@ __Organization:__ [Telerik](http://telerikacademy.com/) JS Alpha Nov-2017
 **App Type:** This is a Standart Web Application using backend and frontend technologies.  
 **Short functional description:** Food delivery web application. Clients can order food from the provided categories. After registration and log in they can send orders and access private details for their history orders. There is feedback form and map location...
 
+URL to project: https://telerik-food-delivery.herokuapp.com/
+
 ## Web apps with Node.js: Teamwork assignment
 ## Project Description
 
