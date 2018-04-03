@@ -8,7 +8,8 @@
       "db",
       "public/js/vendor",
       "public/js/bootstrap.js",
-      "public/js/plugins.js"
+      "public/js/plugins.js",
+      "public/js/main.js"
     ]
   },
   "scripts": {
