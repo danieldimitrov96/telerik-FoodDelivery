@@ -17,17 +17,13 @@ const init = (app, data) => {
         const userDB = await data.user.findByUsername(req.body.name);
         const phoneDBuser = await data.user.findByPhone(req.body.phone);
 
-        console.log(req.body.name.length)
-        console.log(req.body.name.)
-        console.log(req.body.name.length)
-
-        // if (req.body.name.length < 2 || req.body.name.length > 15 ||
-        //     req.body.phone.length < 2 || req.body.phone.length > 15 ||
-        //     req.body.password.length < 2 || req.body.password.length > 18 ||
-        //     !/^\d+$/.test(req.body.password)) {
-        //     console.log('Someone is trying to add bad data to DataBase');
-        //     res.send('try again');
-        // }
+        if (req.body.name.length < 2 || req.body.name.length > 15 ||
+            req.body.phone.length < 2 || req.body.phone.length > 15 ||
+            req.body.password.length < 2 || req.body.password.length > 18 ||
+            /^\d+$/.test(req.body.password)) {
+            console.log('Someone is trying to add bad data to DataBase');
+            res.send('try again');
+        }
 
         if (userDB === null && phoneDBuser === null) {
             await data.user.create(req.body);
