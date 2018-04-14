@@ -113,7 +113,7 @@ nav {
   margin: 20px 0;
   float: right;
   background: white;
-  width: 320px;
+  max-width: 320px;
   position: relative;
   padding: 20px;
   border: 2px solid #545454;
@@ -300,4 +300,9 @@ a {
   .under-heading{
     width: 100%;
   }
+}
+
+.classRow{
+  position: absolute;
+  width: 100%;
 }
